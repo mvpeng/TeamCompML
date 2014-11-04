@@ -2,8 +2,9 @@ import rawpi
 import json
 import time
 
-startingMatchId = 1515876
-nMatches = 1000
+#startingMatchId = 1515876
+startingMatchId = 1517866989
+nMatches = 10000
 
 def isValid(match):
     if match.status_code != 200:
@@ -19,9 +20,12 @@ def rateLimitExceeded(match):
         return True
     return False
 
+
 region = "na"
 counter = 0
 i = 0
+
+
 while counter < nMatches:
     try:
         m = rawpi.get_match(region, i+startingMatchId, True)
@@ -32,6 +36,7 @@ while counter < nMatches:
                     f.write(m.text)
                     counter += 1
                     print(counter)
+                    f.close()
                 except:
                     pass
             i += 1
