@@ -24,9 +24,9 @@ For this project we consider a very popular RPG---League of Legends. This game i
 
 League of Legends is run by Riot Games, which serves over 20 million users each day and generates vast amounts of rich player data that can be accessed via an API. Using this API, we can acquire detailed datasets on game histories that includes information such as performance statistics (e.g., how many actions of a specific type that a character has used), composition of the team (i.e., the specific characters each team has chosen to match-up against the other), and the results of the match (wins/losses, important objectives obtained during the game, etc.).
 
-###Possible methods
+###Methods
 
-We are considering using unsupervised learning, specifically K-means or DP-means [KJ12], to cluster player character behaviors and team compositions that are statistically more successful against a given opposing team composition. By identifying such a trend between team composition and victory/defeat, we could show that the outcome of a League of Legends match may have been decided before it actually begins.
+We consider unsupervised learning, specifically K-means (w/ cross validation) or DP-means [KJ12], to cluster player character behaviors and team compositions that are statistically more successful against a given opposing team composition. By identifying such a trend between team composition and victory/defeat, we aim to predict the win-lose outcome of a League of Legends match before it actually begins.
 
 ### References
 
