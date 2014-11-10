@@ -1,4 +1,4 @@
-function [c, mu] = myKMeans(X, k, nRestarts)
+function [c, mu, distortionValue] = myKMeans(X, k, nRestarts)
 % Use
 %   Implementation of k-means algorithm with random restarts.
 % Input
@@ -8,6 +8,7 @@ function [c, mu] = myKMeans(X, k, nRestarts)
 % Output
 %   c : cluster labels for each point
 %   mu : cluster centroid positions, where each column is a centroid
+%   distortionValue: distortion function value
 
     % check arguments
     if k < 1
@@ -16,20 +17,26 @@ function [c, mu] = myKMeans(X, k, nRestarts)
         error('Error: nRestarts needs to be a positive integer');
     end
     
+    % constants
+    NTRIALS = 10 * nRestarts;
+    
     % initialization
     c = -1 * ones(size(X, 1), 1);
     mu = inf * ones(size(X, 2), k);
     
     % run k-means with random restarts
     nTrial = 0;
-    while nTrial < nRestarts
+    nRestart = 0;
+    while nRestart < nRestarts && nTrial < NTRIALS
         [cNew, muNew, hasConverged] = singleKMeans(X, k);
         if hasConverged && ...
            distortion(X, cNew, muNew) < distortion(X, c, mu)
             c = cNew;
             mu = muNew;
-            nTrial = nTrial + 1;
+            distortionValue = distortion(X, c, mu);
+            nRestart = nRestart + 1;
         end % if
+        nTrial = nTrial + 1;
     end % while
     
 end
@@ -131,7 +138,7 @@ function distortion = distortion(X, c, mu)
     if c(1) < 0
         distortion = inf;
     else
-        distortion = sum(norms(X' - mu(:, c), 2));
+        distortion = sum(norms(X' - mu(:, c), 2)) ^ 2;
     end % if
 
 end
