@@ -54,8 +54,8 @@ function [c, mu, converged] = singleKMeans(X, k)
 %   converged : boolean indicating convergence status
 
     % constants
-    TOL = 1e-6;
-    MAX_ITER = 1e3;
+    TOL = 1e-4;
+    MAX_ITER = 1e2;
     NDATA = size(X, 1);
 
     % initialization
@@ -138,7 +138,7 @@ function distortion = distortion(X, c, mu)
     if c(1) < 0
         distortion = inf;
     else
-        distortion = sum(norms(X' - mu(:, c), 2)) ^ 2;
+        distortion = 1 / size(X, 1) * sum(norms(X' - mu(:, c), 2)) ^ 2;
     end % if
 
 end

@@ -47,9 +47,14 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
 %   distortionValue: distortion function value
 %   k : best k-value out of kRange
 
+    fprintf('\nRunning hold-out cross-validation for k-means...\n\n');
+    fprintf('%3s\t%3s\t%10s\t%10s\t%10s\n', ...
+            'k', 'best k', 'objval', 'best objval', 'cpu time');
+    fprintf('%s\n',repmat('-', 60, 1));
+    
     % constants
     TRAIN_PROP = 0.7;
-    NRESTARTS = 10;
+    NRESTARTS = 20;
     NDATA = size(X, 1);
     
     % initialization
@@ -66,7 +71,7 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
     for kNew = kRange
         
         % train and test centroids
-        [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
+        tic; [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
         cNew = getLabels(XTest, muNew);
         newDistortion = distortion(XTest, cNew, muNew);
         
@@ -74,6 +79,9 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
             k = kNew;
             bestDistortion = newDistortion;
         end % if
+        
+        fprintf('%3d\t%3d\t%10.2f\t%10.2f\t%10.2f\n', ...
+                kNew, k, newDistortion, bestDistortion, toc);
         
     end % for kNew
 
@@ -117,7 +125,7 @@ function distortion = distortion(X, c, mu)
     if c(1) < 0
         distortion = inf;
     else
-        distortion = sum(norms(X' - mu(:, c), 2)) ^ 2;
+        distortion = 1 / size(X, 1) * sum(norms(X' - mu(:, c), 2)) ^ 2;
     end % if
 
 end
@@ -136,21 +144,26 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
 %   distortionValue: distortion function value
 %   k : best k-value out of kRange
 
+    fprintf('\nRunning k-fold cross-validation for k-means...\n\n');
+    fprintf('%3s\t%3s\t%10s\t%10s\t%10s\n', ...
+            'k', 'best k', 'objval', 'best objval', 'cpu time');
+    fprintf('%s\n',repmat('-', 60, 1));
+
     % constants
-    KFOLD = 10;
-    NRESTARTS = 10;
+    NRESTARTS = 20;
     NDATA = size(X, 1);
+    KFOLD = min(sqrt(NDATA), 10);
     
     % randomly split X into KFOLD disjoint subsets
     assignments = randi(KFOLD, NDATA, 1);
     
     % initialization
-    bestMeanDistortion = inf;
+    bestDistortion = inf;
     
     % try all k-values
     for kNew = kRange
         
-        distortions = zeros(KFOLD, 1);
+        tic; netDistortion = 0;
         for kfold = 1:KFOLD
             
             XTrain = X(assignments ~= kfold, :);
@@ -158,14 +171,24 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
             
             [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
             cNew = getLabels(XTest, muNew);
-            distortions(kfold) = distortion(XTest, cNew, muNew);
+            cFull = getLabels(X, muNew);
             
+            netDistortion = netDistortion ...
+                          + size(XTest, 1) / NDATA ...
+                          * (distortion(XTest, cNew, muNew) ...
+                             - distortion(X, cFull, muNew));
         end % for kfold
         
-        if mean(distortions) < bestMeanDistortion
+        % compute cross-validation score bias term
+        [~, ~, fullSetDistortion] = myKMeans(X, kNew, NRESTARTS);
+        netDistortion = netDistortion + fullSetDistortion;
+        if netDistortion < bestDistortion
             k = kNew;
-            bestMeanDistortion = mean(distortions);
+            bestDistortion = netDistortion;
         end % if
+        
+        fprintf('%3d\t%3d\t%10.2f\t%10.2f\t%10.2f\n', ...
+                kNew, k, netDistortion, bestDistortion, toc);
         
     end % for kNew
     
