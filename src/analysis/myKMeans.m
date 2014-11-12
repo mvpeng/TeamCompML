@@ -29,12 +29,13 @@ function [c, mu, distortionValue] = myKMeans(X, k, nRestarts)
     nRestart = 0;
     while nRestart < nRestarts && nTrial < NTRIALS
         [cNew, muNew, hasConverged] = singleKMeans(X, k);
-        if hasConverged && ...
-           distortion(X, cNew, muNew) < distortion(X, c, mu)
-            c = cNew;
-            mu = muNew;
-            distortionValue = distortion(X, c, mu);
+        if hasConverged
             nRestart = nRestart + 1;
+            if distortion(X, cNew, muNew) < distortion(X, c, mu)
+                c = cNew;
+                mu = muNew;
+                distortionValue = distortion(X, c, mu);
+            end % if
         end % if
         nTrial = nTrial + 1;
     end % while
@@ -55,7 +56,7 @@ function [c, mu, converged] = singleKMeans(X, k)
 
     % constants
     TOL = 1e-4;
-    MAX_ITER = 1e2;
+    MAX_ITER = 1e3;
     NDATA = size(X, 1);
 
     % initialization
@@ -72,14 +73,15 @@ function [c, mu, converged] = singleKMeans(X, k)
         muPrev = mu;
         
         % assign data points to closest centroids
-        for data = 1:NDATA
-            diff = repmat(X(data, :)', 1, size(mu, 2)) - mu;
-            [~, c(data)] = min(norms(diff, 2));
-        end % for data
+        c = dsearchn(mu', delaunayn(mu'), X);
         
         % assign centroids to cluster means
         for centroid = 1:k
-            mu(:, centroid) = mean(X(c == centroid,:))';
+            if sum(c == centroid) == 0
+                mu = initClusterCentroids(X, 1);
+            else
+                mu(:, centroid) = mean(X(c == centroid,:))';
+            end % if
         end % for centroid
         
     end % for iter
