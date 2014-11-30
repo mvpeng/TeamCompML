@@ -1,7 +1,6 @@
 TeamCompML
 ==========
 
-<<<<<<< HEAD
 League of Legends + Machine Learning
 =======
 Repository for CS 229 League of Legends + Machine Learning project. 
@@ -38,4 +37,3 @@ We consider unsupervised learning, specifically K-means (w/ cross validation) or
 [Dic05] M. Dickey. Three dimensional virtual worlds and distance learning: Two case studies of Active Worlds as a medium for distance education. British Journal of Educational Technology, vol. 36, no. 3, pp. 439--451, 2005.
 
 [KJ12] B. Kulis and M. Jordan. Revisiting K-means: New algorithms via Bayesian Nonparametrics. Proceedings of the 29th International Conference on Machine Learning, Edinburgh, Scotland, UK, 2012. 
->>>>>>> 98565dc2a3f3a1bb0c0306a114581775e3549f78
