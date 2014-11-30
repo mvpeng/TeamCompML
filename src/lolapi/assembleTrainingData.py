@@ -9,16 +9,17 @@ def writetoFile(fileName,data):
    fileName.write(str(data))
    insertComma(fileName)
 
+DUMP_DIR = '../../dump/'
 counter = 0
 trainingData = open('training.csv','w+')
 smallConst = 1e-15   #Don't divide by zero
 
 trainingData.write('matchID, particpantID, Win, FirstBlood, FirstBloodAssist, firstTower, firstTowerAssist, Kills, Assists, Deaths, GoldEarned, GoldSpent, TotalDamageDealt, MagicDamageDealt, PhysicalDamageDealt, TotalDamageTaken, MinionsKilled, CrowdControl, WardsPlaced\n')
 
-for f in os.listdir('dump'):
+for f in os.listdir(DUMP_DIR):
    if f.find('json') != -1:
 
-      json_data = open('dump/'+f)
+      json_data = open(DUMP_DIR+f)
       data = json.load(json_data)
       json_data.close()
 
