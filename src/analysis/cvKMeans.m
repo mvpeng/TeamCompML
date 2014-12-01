@@ -94,7 +94,7 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
                 kRange(i), k, newDistortion, distortionValue, cputime);
         
         % record results
-        [c, mu] = kmeans(X, k, 'Options', OPT); mu = mu';
+        [c, mu] = kmeans(X, kRange(i), 'Options', OPT); mu = mu';
         results{i}.c = c;
         results{i}.mu = mu;
         results{i}.distortionValue = newDistortion;
@@ -248,7 +248,7 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
                 kNew, k, netDistortion, bestDistortion, cputime);
         
         % record results
-        [c, mu] = kmeans(X, k, 'Options', OPT); mu = mu';
+        [c, mu] = kmeans(X, kNew, 'Options', OPT); mu = mu';
         results{i}.c = c;
         results{i}.mu = mu;
         results{i}.distortionValue = netDistortion;
