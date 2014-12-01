@@ -149,8 +149,8 @@ function svm = svmKMeansFunctionHandle(svmObj)
 % Input
 %   svmObj : classification SVM model object (ClassificationSVM)
 % Output
-%   svm : svm function handle that outputs a win/loss (1/0) classification
-%         based on the input data point
+%   svm : SVM function handle that outputs a win/loss (1/0) classification
+%         and score based on the input data point and learned SVM model
 
     svm = @(x)predict(svmObj, x);
 
