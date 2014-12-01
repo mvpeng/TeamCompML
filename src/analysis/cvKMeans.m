@@ -108,7 +108,9 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
     [c, mu] = kmeans(X, k, 'Options', OPT); mu = mu';
     
     % save results
-    save(sprintf('results-%s-%s.mat', 'holdout', datestr(clock)), 'results');
+    outfile = sprintf('results-%s-%s.mat', 'holdout', datestr(clock));
+    save(outfile, 'results');
+    fprintf('Results saved to %s', outfile);
     
 end
 
@@ -263,6 +265,8 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
     distortionValue = distortion(X, c, mu);
     
     % save results
-    save(sprintf('results-%s-%s.mat', 'kfold', datestr(clock)), 'results');
+    outfile = sprintf('results-%s-%s.mat', 'kfold', datestr(clock));
+    save(outfile, 'results');
+    fprintf('Results saved to %s', outfile);
 
 end

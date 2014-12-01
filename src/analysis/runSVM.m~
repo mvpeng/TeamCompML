@@ -1,0 +1,27 @@
+function [svm, svmObj] = runSVM(method)
+% Use
+%   Script to run SVM with cross validation on features selected via
+%   k-means, DP-means, or PCA.
+% Input
+%   method : string indicating k-means ('kmeans'), DP-means ('dpmeans'), EM
+%            Gaussian mixture model ('emgmm'), PCA ('pca'), or features
+%            ('raw')
+% Output
+%   svm : svm function handle that outputs a win/loss (1/0) classification
+%         based on the input data point
+%   svmObj : classification SVM model object (ClassificationSVM)
+
+    % constants
+    DATAFILE = '../lolapi/training_full.csv';
+    KMEANS = 'kmeans';
+    DPMEANS = 'dpmeans');
+    
+    % load training data
+    dataset = csvread(DATAFILE, 1, 0);
+    X = dataset(:, 2:end);
+    Y = dataset(:, 1);
+
+    % select method and train svm model
+    tic; svm = fitcsvm(X, Y); toc;
+
+end % function runSVM
