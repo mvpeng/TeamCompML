@@ -1,31 +1,33 @@
-function [c, mu, k] = myDPMeans(X, nRestarts, lambda)
+function [c, mu, k] = myDPMeans(X, lambda)
 % Use
 %   Implementation of DP-means algorithm with random restarts.
 % Input
 %   X : m-samples training set, where each row is a sample feature vector
-%   nRestarts : number of random restarts
 %   lambda : cluster penalty parameter
 % Output
 %   c : cluster labels for each point
 %   mu : cluster centroid positions, where each column is a centroid
 %   k : number of clusters
 
-    % check arguments
-    if nRestarts < 1
-        error('Error: nRestarts needs to be a positive integer');
-    end
-
     % constants
     NDATA = size(X, 1);
+    NFEAT = size(X, 2);
     MAX_ITERS = 1e3;
-
+    
     % initialization
-    X = randPermData(X);
     [c, mu, k] = initClusters(X);
-    cPrev = zeros(NDATA, 1);
+    objvalPrev = inf;
+    
+    fprintf('\nRunning DP-means...\n\n');
+    fprintf('%3s\t%3s\t%10s\t%10s\t%10s\n', ...
+            'iter', 'k', 'objval', 'deltaConv', 'cpu time');
+    fprintf('%s\n',repmat('-', 60, 1));
 
     for iter = 1:MAX_ITERS
 
+        tic;
+        X = randPermData(X);
+        
         for data = 1:NDATA
             
             x = X(data, :)';
@@ -51,12 +53,24 @@ function [c, mu, k] = myDPMeans(X, nRestarts, lambda)
 
         % compute centroid positions
         for centroid = 1:k
-            mu(centroid) = mean(X(c == centroid, :))';
+            mu(:, centroid) = mean(X(c == centroid, :))';
         end % for centroid
-
-        % stop when labels converge
-        if sum(cPrev ~= c) == 0, break, end
-        cPrev = c;
+        
+        % stop when objective values converge
+        objval = lambda * k;
+        for data = 1:NDATA
+            objval = objval + (X(data, :)' - mu(:, c(data)))' * ...
+                              (X(data, :)' - mu(:, c(data)));
+        end % for data
+        
+        [hasConverged, delta] = ...
+            getConvergence(objval, objvalPrev, NDATA, NFEAT);
+        
+        fprintf('%3d\t%3d\t%10.3f\t%10.2e\t%10.3f\n', ...
+                iter, k, objval, delta, toc);
+        
+        if hasConverged, break, end
+        objvalPrev = objval;
 
     end % for iter
 
@@ -70,6 +84,9 @@ function Xperm = randPermData(X)
 %   X : m-samples training set, where each row is a sample feature vector
 % Output
 %   Xperm : randomly ordered m-samples training set (from X)
+
+  % constants
+  NDATA = size(X, 1);
 
   Xperm = X(randperm(NDATA), :);
 
@@ -94,3 +111,26 @@ function [c, mu, k] = initClusters(X)
   c = ones(NDATA, 1);
 
 end % function initClusters
+
+
+function [hasConverged, delta] = getConvergence(objval, objvalPrev, nData, nFeat)
+% Use
+%   Returns a boolean indicating whether the DP-means iterations have
+%   converged (to a local minimum).
+% Input
+%   objval : current objective value
+%   objvalPrev : previous objective value
+% Output
+%   hasConverged : boolean indicating whether the objective values have
+%   converged
+
+    % constants
+    REL_TOL = 1e-6;
+    ABS_TOL = 1e-6;
+    TOL = 1.4e-3;
+    
+    diff = abs(objvalPrev - objval);
+    delta = diff * REL_TOL + ABS_TOL * sqrt(nData * nFeat);
+    hasConverged = delta < TOL;
+
+end % function hasConverged
