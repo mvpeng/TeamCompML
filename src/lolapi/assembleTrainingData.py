@@ -1,7 +1,6 @@
 import json
 import os
 
-
 def insertComma(fileName):
    fileName.write(' , ')
 
@@ -11,10 +10,10 @@ def writetoFile(fileName,data):
 
 DUMP_DIR = '../../dump/'
 counter = 0
-trainingData = open('training.csv','w+')
+trainingData = open('training_full.csv','w+')
 smallConst = 1e-15   #Don't divide by zero
 
-trainingData.write('matchID, particpantID, Win, FirstBlood, FirstBloodAssist, firstTower, firstTowerAssist, Kills, Assists, Deaths, GoldEarned, GoldSpent, TotalDamageDealt, MagicDamageDealt, PhysicalDamageDealt, TotalDamageTaken, MinionsKilled, CrowdControl, WardsPlaced\n')
+trainingData.write('Win, FirstBlood, firstTower, firstTowerAssist, Kills, Assists, Deaths, GoldEarned, GoldSpent, TotalDamageDealt, MagicDamageDealt, PhysicalDamageDealt, TotalDamageTaken, MinionsKilled, CrowdControl, WardsPlaced\n')
 
 for f in os.listdir(DUMP_DIR):
    if f.find('json') != -1:
@@ -62,7 +61,7 @@ for f in os.listdir(DUMP_DIR):
                teamGoldEarned[1] += stats['goldEarned']
                teamGoldSpent[1] += stats['goldSpent']
                teamDamageDealt[1] += stats['totalDamageDealt']
-               teamMagicDamageDealt[1] += stats['magicDamageDealtToChampions']
+               teamMagicDamageDealt[1] += stats['magicDamageDealt']
                teamPhysicalDamageDealt[1] += stats['physicalDamageDealt']
                teamTotalDamageTaken[1] += stats['totalDamageTaken']
                teamMinionsKilled[1] += stats['minionsKilled']
@@ -76,16 +75,20 @@ for f in os.listdir(DUMP_DIR):
             stats = data['participants'][i]['stats']
 
             # General Info -- not used for clustering
-            writetoFile(trainingData,data['matchId'])
-            writetoFile(trainingData,data['participantIdentities'][i]['participantId'])
+            #writetoFile(trainingData,data['matchId'])
+            #writetoFile(trainingData,data['participantIdentities'][i]['participantId'])
 
             # Booleans -- NOT NORMALIZED
             writetoFile(trainingData,int(data['teams'][teamID]['winner']))
-            writetoFile(trainingData,int(stats['firstBloodKill']))
-            writetoFile(trainingData,int(stats['firstBloodAssist']))
+            if stats.has_key('firstBloodKill'):
+               writetoFile(trainingData,int(stats['firstBloodKill']))
+               #writetoFile(trainingData,int(stats['firstBloodAssist']))   not working
+            else:
+               writetoFile(trainingData, 0)
+               #writetoFile(trainingData, 0)
+
             writetoFile(trainingData,int(stats['firstTowerKill']))
             writetoFile(trainingData,int(stats['firstTowerAssist']))
-
 
             writetoFile(trainingData, stats['kills']/teamKills[teamID])
             writetoFile(trainingData, stats['assists']/teamAssists[teamID])
@@ -101,6 +104,4 @@ for f in os.listdir(DUMP_DIR):
             writetoFile(trainingData, stats['wardsPlaced']/teamWards[teamID])
 
             trainingData.write('\n')
-
-      if counter>100:
-         exit(-1)
+            #print counter
