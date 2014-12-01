@@ -1,6 +1,7 @@
 function [Y, V] = myPCA(X, k)
 % Use
-%   Runs PCA algorithm for data dimensionality reduction.
+%   Runs PCA algorithm for data dimensionality reduction. This is also
+%   useful for cluster visualization (in 2D or 3D using scatter3).
 % Input
 %   X : m-samples training set, where each row is a sample feature vector
 %   k : number of desired principal components of data
