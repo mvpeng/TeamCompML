@@ -17,7 +17,7 @@ function [c, mu, k] = myDPMeans(X, nRestarts, lambda)
 
     % constants
     NDATA = size(X, 1);
-    MAX_ITERS = 1e4;
+    MAX_ITERS = 1e3;
 
     % initialization
     X = randPermData(X);
@@ -26,7 +26,33 @@ function [c, mu, k] = myDPMeans(X, nRestarts, lambda)
 
     for iter = 1:MAX_ITERS
 
-        
+        for data = 1:NDATA
+            
+            x = X(data, :)';
+            
+            % compute distance to each centroid
+            dist = inf * ones(k, 1);
+            for centroid = 1:k
+                dist(centroid) = (x - mu(:, centroid))' * ...
+                                 (x - mu(:, centroid));
+            end % for centroid
+
+            % assign cluster label
+            if min(dist) > lambda
+                % create new cluster if far from existing clusters
+                k = k + 1;
+                c(data) = k;
+                mu = [mu x];
+            else
+                [~, c(data)] = min(dist);
+            end % if
+
+        end % for data        
+
+        % compute centroid positions
+        for centroid = 1:k
+            mu(centroid) = mean(X(c == centroid, :))';
+        end % for centroid
 
         % stop when labels converge
         if sum(cPrev ~= c) == 0, break, end
