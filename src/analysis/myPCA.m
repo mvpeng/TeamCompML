@@ -19,7 +19,7 @@ function [Y, V] = myPCA(X, k)
     end % for data
     [V, ~] = eig(XT);
 
-    % transform data to reduced dimensionality space
+    % map data to reduced dimensionality space
     Y = zeros(NDATA, k);
     for data = 1:NDATA
         Y(data, :) = V' * X(data, :)';
