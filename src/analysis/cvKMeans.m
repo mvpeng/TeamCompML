@@ -58,7 +58,7 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
     NDATA = size(X, 1);
     
     % initialization
-    bestDistortion = inf;
+    distortionValue = inf;
     
     % randomly split X to train and test sets
     nTrain = floor(TRAIN_PROP * NDATA);
@@ -71,22 +71,25 @@ function [c, mu, distortionValue, k] = holdout(X, kRange)
     for kNew = kRange
         
         % train and test centroids
-        tic; [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
+        % tic; [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
+        tic; [~, muNew, ~] = kmeans(XTrain, kNew); muNew = muNew';
+        
         cNew = getLabels(XTest, muNew);
         newDistortion = distortion(XTest, cNew, muNew);
         
-        if newDistortion < bestDistortion
+        if newDistortion < distortionValue
             k = kNew;
-            bestDistortion = newDistortion;
+            distortionValue = newDistortion;
         end % if
         
         fprintf('%3d\t%3d\t%10.2f\t%10.2f\t%10.2f\n', ...
-                kNew, k, newDistortion, bestDistortion, toc);
+                kNew, k, newDistortion, distortionValue, toc);
         
     end % for kNew
 
     % return k-means result using best k-value
-    [c, mu, distortionValue] = myKMeans(X, k, NRESTARTS);
+    % [c, mu, distortionValue] = myKMeans(X, k, NRESTARTS);
+    [c, mu] = kmeans(X, k); mu = mu';
     
 end
 
@@ -169,7 +172,8 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
             XTrain = X(assignments ~= kfold, :);
             XTest = X(assignments == kfold, :);
             
-            [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
+            % [~, muNew, ~] = myKMeans(XTrain, kNew, NRESTARTS);
+            [~, muNew] = kmeans(XTrain, kNew); muNew = muNew';
             cNew = getLabels(XTest, muNew);
             cFull = getLabels(X, muNew);
             
@@ -180,7 +184,10 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
         end % for kfold
         
         % compute cross-validation score bias term
-        [~, ~, fullSetDistortion] = myKMeans(X, kNew, NRESTARTS);
+        % [~, ~, fullSetDistortion] = myKMeans(X, kNew, NRESTARTS);
+        [c, mu] = kmeans(X, kNew); mu = mu';
+        fullSetDistortion = distortion(X, c, mu);
+        
         netDistortion = netDistortion + fullSetDistortion;
         if netDistortion < bestDistortion
             k = kNew;
@@ -193,6 +200,8 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
     end % for kNew
     
     % return k-means result using best k-value
-    [c, mu, distortionValue] = myKMeans(X, k, NRESTARTS);
+    % [c, mu, distortionValue] = myKMeans(X, k, NRESTARTS);
+    [c, mu] = kmeans(X, k); mu = mu';
+    distortionValue = distortion(X, c, mu);
 
 end

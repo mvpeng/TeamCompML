@@ -93,20 +93,16 @@ end
 
 function mu = initClusterCentroids(X, k)
 % Use
-%   Randomly initialize k cluster centroids.
+%   Randomly initialize k cluster centroids to distinct points in X.
 % Input
 %   X : m-samples training set, where each row is a sample feature vector
 %   k : predetermined number of point clusters
 % Output
 %   mu : cluster centroid positions, where each column is a centroid
 
-    minRange = min(X)';
-    maxRange = max(X)';
-    range = maxRange - minRange;
-    
-    mu = zeros(length(range), k);
+    mu = zeros(size(X, 2), k);
     for i = 1:k
-        mu(:,i) = minRange + range .* rand(size(range));
+        mu(:,i) = X(randi(size(X, 1)), :)';
     end % for i
 
 end
