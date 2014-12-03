@@ -30,14 +30,14 @@ function [svm, svmObj] = runSVM(method)
     
     % load training data
     dataset = csvread(DATAFILE, 1, 0);
-    X = dataset(:, 2:end);
-    Y = dataset(:, 1);
-
+    x = dataset(:, 2:end);
+    y = dataset(:, 1);
+    
     tic;
     if strcmp(method, KMEANS)
-        [svm, svmObj] = svmKMeans(Y);
+        [X, Y] = svmKMeans(y);
     elseif strcmp(method, DPMEANS)
-        
+        [X, Y] = svmDPMeans(x, y);
     elseif strcmp(method, EMGMM)
         
     elseif strcmp(method, PCA)
@@ -48,7 +48,11 @@ function [svm, svmObj] = runSVM(method)
         assert(false, 'Assertion failed: Shouldn''t reach here');
     end % if
     
-    fprintf(['SVM model trained with %s data compression method in ' ...
+    % train svm model and convert to function handle
+    svmObj = fitcsvm(X, Y);
+    svm = @(z)predict(svmObj, z);
+    
+    fprintf(['\nSVM model trained with %s data compression method in ' ...
              '%.2f sec\n'], method, toc);
 
 end % function runSVM

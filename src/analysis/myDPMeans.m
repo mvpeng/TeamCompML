@@ -127,7 +127,7 @@ function [hasConverged, delta] = getConvergence(objval, objvalPrev, nData, nFeat
     % constants
     REL_TOL = 1e-6;
     ABS_TOL = 1e-6;
-    TOL = 1.4e-3;
+    TOL = 1.5e-3;
     
     diff = abs(objvalPrev - objval);
     delta = diff * REL_TOL + ABS_TOL * sqrt(nData * nFeat);
