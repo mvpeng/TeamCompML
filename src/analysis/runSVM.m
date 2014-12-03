@@ -13,17 +13,14 @@ function [svm, svmObj] = runSVM(method)
 %   svmObj : classification SVM model object (ClassificationSVM)
 
     % constants
-    DATAFILE = '../lolapi/training_full.csv';
     KMEANS = 'kmeans';
     DPMEANS = 'dpmeans';
     EMGMM = 'emgmm';
-    PCA = 'pca';
-    RAW = 'raw';
+    DATAFILE = '../lolapi/training_full.csv';
     
     % check input arguments
     if ~strcmp(method, KMEANS) && ~strcmp(method, DPMEANS) && ...
-       ~strcmp(method, EMGMM) && ~strcmp(method, PCA) && ...
-       ~strcmp(method, RAW)
+       ~strcmp(method, EMGMM)
         error(['Error: method must be a valid string indicating the ' ...
                'data compression method']);
     end % if
@@ -33,17 +30,15 @@ function [svm, svmObj] = runSVM(method)
     x = dataset(:, 2:end);
     y = dataset(:, 1);
     
+    % get compressed features and labels
     tic;
     if strcmp(method, KMEANS)
         [X, Y] = svmKMeans(y);
     elseif strcmp(method, DPMEANS)
         [X, Y] = svmDPMeans(x, y);
     elseif strcmp(method, EMGMM)
-        
-    elseif strcmp(method, PCA)
-        
-    elseif strcmp(method, RAW)
-        
+        % TODO: code EM algorithm up
+        error('Error: EM algorithm not implemented!');
     else
         assert(false, 'Assertion failed: Shouldn''t reach here');
     end % if
