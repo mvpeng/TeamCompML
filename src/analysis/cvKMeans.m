@@ -267,6 +267,6 @@ function [c, mu, distortionValue, k] = kfold(X, kRange)
     % save results
     outfile = sprintf('results-%s-%s.mat', 'kfold', datestr(clock));
     save(outfile, 'results');
-    fprintf('Results saved to %s', outfile);
+    fprintf('Results saved to %s\n', outfile);
 
 end

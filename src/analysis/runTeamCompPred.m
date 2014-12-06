@@ -11,7 +11,7 @@ function [pred, predObj] = runTeamCompPred(compressor, classifier)
 %   predObj : classification model object
 
     % constants
-    DATAFILE = '../lolapi/training_full.csv';
+    DATAFILE = '../lolapi/training_full_v3.csv';
     KMEANS = 'kmeans';
     DPMEANS = 'dpmeans';
     EMGMM = 'emgmm';
