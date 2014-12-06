@@ -5,7 +5,7 @@
 clear; close all; clc;
 
 % constants
-DATAFILE = '../lolapi/training_full.csv';
+DATAFILE = '../lolapi/training_full_v3.csv';
 LAMBDA = (1 + sqrt(5)) / 2; % ~23 clusters
 % LAMBDA = 2; % ~15 clusters
 % LAMBDA = 2.5; % ~8 clusters
