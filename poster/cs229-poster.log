@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 15:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -837,7 +837,7 @@ Package pdftex.def Info: clusters-intuit.pdf used on input line 388.
 File: viz-cluster.pdf Graphic file (type pdf)
  <use viz-cluster.pdf>
 Package pdftex.def Info: viz-cluster.pdf used on input line 405.
-(pdftex.def)             Requested size: 613.23592pt x 424.19072pt.
+(pdftex.def)             Requested size: 574.90648pt x 397.67369pt.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <24.88> not available
@@ -858,7 +858,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Here is how much of TeX's memory you used:
  15431 strings out of 493109
  300194 string characters out of 6135004
- 379773 words of memory out of 5000000
+ 380773 words of memory out of 5000000
  18579 multiletter control sequences out of 15000+600000
  9287 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -869,7 +869,7 @@ Here is how much of TeX's memory you used:
 usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cs229-poster.pdf (1 page, 415520 bytes).
+Output written on cs229-poster.pdf (1 page, 415778 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  81 compressed objects within 1 object stream

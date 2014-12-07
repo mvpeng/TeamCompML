@@ -241,7 +241,7 @@ Mark Peng
     \item \textbf{Target Game: League of Legends}
     \begin{itemize}
       \item Multiplayer battle arena game with 27 million plays per day
-      \item Free online API to retrieve de-identified game data
+      \item Free online API to retrieve recorded game data
       \item Official guide provides clustering information for players based on in-game character choices (e.g., character with good defense)
     \end{itemize}
 
@@ -273,7 +273,7 @@ Mark Peng
 
 \begin{itemize}
   
-  \item \textbf{Features} are team compositions for all teams in a game based on official game guide's clustering information (each character is mapped to a play style)
+  \item \textbf{Features} are team compositions for all teams in a game based on official guide's clustering information (characters are mapped to 1 of 5 play styles)
 
   \item \textbf{Logistic regression} with 10\% hold-out cross validation
   
@@ -321,7 +321,7 @@ Mark Peng
   \begin{table}[htbp!]
     \begin{minipage}{\textwidth}
       \centering
-      \caption*{\textbf{Summary:} Play style clustering algorithm results (10 trials average)}
+      \caption*{\textbf{Summary:} Play style clustering algorithm results (10 trials)}
       \begin{tabular}{lcccc}
         \toprule
         & cross validation method & no. of clusters & cpu time (s) \\ \midrule
@@ -341,7 +341,7 @@ Mark Peng
 
 \begin{itemize}
 
-  \item Surprisingly accurate intuition behind clustering
+  \item Surprisingly accurate intuition behind groups (with input from expert players)
 
   \begin{multicols}{2}
 
@@ -402,7 +402,7 @@ Mark Peng
 
   \begin{figure}[!h]
     \centering
-    \includegraphics[trim=60pt 210pt 70pt 250pt, clip, width=0.8\textwidth]{viz-cluster.pdf}
+    \includegraphics[trim=60pt 210pt 70pt 250pt, clip, width=0.75\textwidth]{viz-cluster.pdf}
     \label{fig:viz}
   \end{figure}
 \end{itemize}
@@ -439,7 +439,7 @@ Mark Peng
 \begin{table}[htbp!]
   \begin{minipage}{\textwidth}
     \centering
-    \caption*{\textbf{Summary:} Outcome prediction algorithm results (10 trials average)}
+    \caption*{\textbf{Summary:} Outcome prediction algorithm results (10 trials)}
     \begin{tabular}{lcccccc}
       \toprule
       & \multicolumn{2}{c}{k-means (\%)} & \multicolumn{2}{c}{DP-means (\%)} & \multicolumn{2}{c}{cpu time (s)} \\
@@ -459,11 +459,11 @@ Mark Peng
 
 \begin{itemize}
   
-  \item 
+  \item k-means and DP-means provided clusters separated by highly intuitive play style differences, as confirmed by expert players
 
-  \item 
+  \item LR, GDA, and SVM all provided better predictors with our new team composition features than baseline LR with official character classes
 
-  \item 
+  \item More features, such as time-identified statistics (early vs. late game actions)
 
 \end{itemize}
 
