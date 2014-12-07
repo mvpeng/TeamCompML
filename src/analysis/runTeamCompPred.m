@@ -1,4 +1,4 @@
-function [pred, predObj] = runTeamCompPred(compressor, classifier)
+function [pred, predObj, mu] = runTeamCompPred(compressor, classifier)
 % Use
 %   Runs classifier with features selected with k-means, DP-means, or EM
 %   with Gaussian mixture model data compression methods.
@@ -9,6 +9,7 @@ function [pred, predObj] = runTeamCompPred(compressor, classifier)
 %   pred : predictor function handle that outputs a win/loss (1/0)
 %          classification based on the input data point
 %   predObj : classification model object
+%   mu : cluster centroid positions, where each column is a centroid
 
     % constants
     DATAFILE = '../lolapi/training_full_v3.csv';
@@ -40,9 +41,9 @@ function [pred, predObj] = runTeamCompPred(compressor, classifier)
     % get compressed features and labels
     startTime = tic;
     if strcmp(compressor, KMEANS)
-        [X, Y] = getKMeansFeatures(y);
+        [X, Y, mu] = getKMeansFeatures(x, y);
     elseif strcmp(compressor, DPMEANS)
-        [X, Y] = getDPMeansFeatures(y);
+        [X, Y, mu] = getDPMeansFeatures(x, y);
     elseif strcmp(compressor, EMGMM)
         % TODO: code EM algorithm up
         error('Error: EM algorithm not implemented!');

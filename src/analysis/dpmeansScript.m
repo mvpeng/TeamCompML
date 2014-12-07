@@ -7,7 +7,7 @@ clear; close all; clc;
 % constants
 DATAFILE = '../lolapi/training_full_v3.csv';
 TRAIN_PROP = 0.9;
-LAMBDA = (1 + sqrt(5)); % ~9 clusters
+LAMBDA = (1 + sqrt(5)); % ~8 clusters
 % LAMBDA = 3; % ~13 clusters
 % LAMBDA = 2.9; % ~15 clusters
 

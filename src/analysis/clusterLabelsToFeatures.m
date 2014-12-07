@@ -11,7 +11,7 @@ function [X, Y] = clusterLabelsToFeatures(c, z)
     % constants
     NPLAYERS_PER_TEAM = 5;
     NPLAYERS_PER_GAME = 10;
-    NDATA = length(c);
+    NDATA = length(c) - mod(length(c), NPLAYERS_PER_GAME);
     NGAMES = NDATA / NPLAYERS_PER_GAME;
     NDATA_FINAL = 2 * NGAMES;
     NCLUSTERS = max(c);
