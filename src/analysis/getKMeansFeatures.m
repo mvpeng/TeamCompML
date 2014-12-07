@@ -8,8 +8,10 @@ function [X, Y] = getKMeansFeatures(y)
 %   Y : classification label for each game
 
     % constants
-    KMEANS_DATAFILE = 'results-kfold-training-full';
-    KMEANS_INDEX = 2;
+    KMEANS_DATAFILE = 'results-kfold-training-full-3';
+    OFFSET = 4;
+    K_VALUE = 12;
+    KMEANS_INDEX = K_VALUE - OFFSET;
     
     % load k-means results
     kmeansModel = load(KMEANS_DATAFILE);
