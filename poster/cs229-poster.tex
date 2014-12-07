@@ -88,6 +88,7 @@
 
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
+\usepackage{vwcol} 
 
 % Set up the grid
 %
@@ -126,21 +127,21 @@
 % Watch out for hyphenation in titles - LaTeX will do it
 % but it looks awful.
 \begin{textblock}{23}(0,0)
-\Title{Diabetes Prediction with Incomplete Patient Data}
+\Title{Player Behavior and Optimal Team Composition in Online Games}
 \end{textblock}
 
 \begin{textblock}{23}(0,0.6)
 {
 \LARGE
 Hao Yi Ong,
-Dennis Wang,
-Xiao Song Mu
+Sunil Deolalikar, and
+Mark Peng
 }
 
 {
 \Large
 \color{bluegray}
-\emph{CS 221 Artificial Intelligence: Principles and Techniques Class Project}
+\emph{CS 229: Machine Learning Class Project}
 }
 \end{textblock}
 
@@ -166,87 +167,88 @@ Xiao Song Mu
 
 \begin{itemize}
   
-  \item Given a set of electronic health records, we want to have a smart predictor that prompts high-risk patients to obtain Type II Diabetes testing
+  \item In online role-playing games, players work in teams to accomplish a common objective (e.g., defeating an opposing team)
 
 \end{itemize}
 
 \begin{figure}[!h]
   \centering
-  % \includegraphics[width=9in]{intro-fig.pdf}
-  \label{fig1}
+  \includegraphics[width=\textwidth]{intro-fig.pdf}
+  \label{fig:intro}
 \end{figure}
+
+\begin{itemize}
+
+  \item In a game, given the teams' player compositions and their player statistics, we want to predict the players' play style and forecast the game outcome
+
+\end{itemize}
 
 \begin{multicols}{2}
   
   \begin{itemize}
-    \item Original Kaggle challenge:
+    \item \textbf{Player behavior}
     \begin{itemize}
-      \item Patients all have a standard database and a full medical record
-      \item I.e., exact same tests taken, same variables recorded, etc.
+      \item In-game play style; e.g., prefers more offense-oriented strategies
+      \item Also encompasses skill level
+      \item Predict from player statistics
     \end{itemize}
 
-    \item In practice, however:
+    \item \textbf{Team composition}
     \begin{itemize}
-      \item Not everyone has taken the same tests and gotten regular checkups
-      \item Database inconsistencies or errors in inputting data may exist
+      \item Types of players on a team, each classified by their play styles
+      \item Predict from game server database's match histories
     \end{itemize}
   \end{itemize}
+
 \end{multicols}
-
-\begin{itemize}
-
-  \item Predictor must be able to accurately classify based on incomplete or erroneous medical records to be useful
-
-\end{itemize}
 
 \medskip
 \hrule\medskip
-\Head{Diabetes Prediction}
+\Head{Problem Description}
 
 \begin{itemize}
 
   \item Given
   \begin{itemize}
-    \item \textbf{Training set} containing standardized patient medical records
-    \item \textbf{Testing set} containing patient medical records with missing information and erroneously recorded data
+    \item \textbf{Match histories} containing participant IDs and match statistics
+    \item \textbf{Player statistics} containing player histories and overall game statistics
   \end{itemize}
 
   \item Output
   \begin{itemize}
-    \item \textbf{Bayesian network structure} encoding the conditional dependencies between medical record variables
-    \item \textbf{Bayesian network parameters} encoding the conditional probabilities for each variable
-    \item \textbf{Probabilistic inference} on the learned Bayesian network (BN) for classification
+    \item \textbf{Play style classifier} that groups players by their in-game tendencies given their game histories
+    \item \textbf{Outcome predictor} that guesses which team will win given the various team compositions
   \end{itemize}
 
-  \item To minimize the error rate, including false positives and false negatives, on classifying whether a patient has Type II Diabetes
+  \item In order to
+  \begin{itemize}
+    \item \emph{Gain insight} on player behaviors and game strategies
+    \item \emph{Maximize accuracy} on predicting game outcomes
+  \end{itemize} 
 
 \end{itemize}
 
 \medskip
 \hrule\medskip
-\Head{Evaluation Criteria}
-
-\begin{figure}[!h]
-  \centering
-  % \includegraphics[width=0.8\textwidth]{eval-fig.pdf}
-  \label{fig2}
-\end{figure}
+\Head{Target Online Game}
 
 \begin{multicols}{2}
   \begin{itemize}
     
-    \item \textbf{Baseline: logistic regression}
+    \item \textbf{League of Legends}
     \begin{itemize}
-      \item Basic features: age, BMI, ...
-      \item 10\% hold-out cross validation
-      \item False positive rate of 0.7\%, false negative rate of 15.3\%, and an error rate of 16\% (84\% accuracy)
+      \item Multiplayer battle arena game with 27 million plays per day
+      \item Free online API to retrieve de-identified game data
+      \item Official guide provides clustering information for players based on in-game character choices (e.g., character with good defense)
     \end{itemize}
 
-    \item \textbf{Oracle}
-    \begin{itemize}
-      \item Ideal oracle: experienced physicians (impractical)
-      \item Use as surrogate diabetes tests vetted by HHS (HBA1c, FPG, and OGTT; 85--95\% accuracy)
-    \end{itemize}
+    \vspace{30pt}
+
+    \begin{figure}[!h]
+      \centering
+      \includegraphics[width=0.30\textwidth]{lol-icon.pdf}
+      \label{fig:lol}
+    \end{figure}
 
   \end{itemize}
 \end{multicols}
@@ -256,69 +258,31 @@ Xiao Song Mu
 \begin{textblock}{7.0}(8,1.5)
 
 \hrule\medskip
-\Head{Structure Learning as a Search Problem}
+\Head{Baseline Outcome Predictor}
 
 \begin{itemize}
   
-  \item \textbf{NP-hard search problem} Finding the best set of edges is hard as the number of BNs (DAGs) grows superexponentially with the number of nodes
+  \item \textbf{Features} are team compositions for each team in a game based on official game guide's clustering information
 
-  \item \textbf{Bayesian score} To evaluate the BN, we use the Bayesian score with a uniform Dirichlet prior over structures, which optimally balances the complexity of the BN structure with the available data (Koller and Friedman, 2009)
-
-  \item \textbf{Feature selection} We selected 27 discretized features (nodes) for the 10,000 samples according to ICD9 disease groupings to limit the search space
-
-  \item \textbf{Tabu search} To find the optimal structure, we use a hill-climbing algorithm that maximizes the ``fitness'' of the BN based on the Bayesian score
-
-  By maintaining a tabu list of recent operators we applied (e.g., adding an edge to the existing BN) and not considering operators that reverse the effect of recently applied operators, the heuristic avoids getting stuck at local optima
-
-  \begin{addmargin}[1em]{2em}% 1em left, 2em right
-    \begin{leftbar}
-      \begin{tabbing}
-        {\bf given} training set \(\mathcal{D}\), structure prior \(P(\mathcal{G})\), node set \(\mathcal{N}\), tabu list size \(L\) \\*[\smallskipamount]
-        {\bf initialize} random BN \(\mathcal{G}\), tabu list \(\mathcal{T}\), valid operations \(\mathcal{O}\) \\*[\smallskipamount]
-        {\bf repeat} \\
-        \qquad \= 1.\ if \(\left|\mathcal{O}\right|\) too large, generate random subset of valid operations \(\hat{\mathcal{O}}\subset\mathcal{O}\) \\
-        \> 2.\ find best operation: \(\text{Op} := \argmax_{\text{Op}\in\hat{\mathcal{O}}\backslash \mathcal{T}}\text{BayesScore}(\text{Op}(\mathcal{G}))\) \\
-        \> 3.\ set \(\mathcal{G}:=\text{Op}(\mathcal{G})\) and \(\mathcal{T}:=\mathcal{T}\cup\left\{\text{reverse}(\text{Op})\right\}\) \\
-        \> 4.\ remove operation added \(L\) iterations ago to \(\mathcal{T}\) from it \\
-        {\bf until} \(\text{BayesScore}(\mathcal{G})\) converges \\*[\smallskipamount]
-        {\bf return} \(\mathcal{G}\)
-      \end{tabbing}
-    \end{leftbar}
-  \end{addmargin}
+  \item \textbf{Logistic regression} with 10\% hold-out cross validation
   
-  \item \textbf{Resulting structures} Produced 20 structures; avg 31 min with Julia implementation on an Intel Xeon E5-2650 processor (2.60 GHz), 32 GB RAM
+  \item \textbf{Data samples} with 120,000 train and validation and 12,000 test samples
+  
+  \item \textbf{Accuracy} of ??\% on test samples
 
 \end{itemize}
 
 \medskip
 \hrule\medskip
-\Head{Parameter Learning}
+\Head{Behavioral Clustering}
 
-\begin{itemize}
-  
-  \item \textbf{MLE with Laplace smoothing} We use MLE with Laplace smoothing to learn the conditional probabilities associated with each node (9,000 samples)
 
-  \item \textbf{Limited dataset} Given dataset is small in comparison to number of possible variable values, which motivates our use of Laplace smoothing
-
-  \item \textbf{Relational database} We store our data in a relational database and optimize data retrieval by applying indices over sets of variable names
-
-\end{itemize}
 
 \medskip
 \hrule\medskip
-\Head{Approximate Probabilistic Inference}
+\Head{Cluster Visualization}
 
-\begin{itemize}
 
-  \item \textbf{Classification using BN} Assign label to whichever inferred probability is higher; probabilities are over the missing variables and observed ones
-
-  \item \textbf{NP-hard} Given our large BN structure and variable domain sizes, exact inference is infeasible (exponential time complexity in the worst case)
-
-  \item \textbf{Gibbs sampling} We use a Markov Chain Monte Carlo technique where, in the limit, samples are drawn exactly from the joint distribution over the unknown variables given the observed variables
-
-  Since samples are not independent, we discard the first 100 samples (burn-in period) and keep only every 10th sample (thinning)
-
-\end{itemize}
 
 \end{textblock}
 
@@ -401,8 +365,9 @@ Xiao Song Mu
 
 \medskip
 \hrule\medskip
+\Head{Acknowledgements}
 
-*We thank the course instructor Prof. Percy Liang, our mentor Billy Jun, and the instructor team
+We thank Professor Andrew Ng, the instructor team, and fellow students for their help with and feedback on our work.
 
 \end{textblock}
 

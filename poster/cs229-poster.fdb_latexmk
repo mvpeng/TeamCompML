@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1417898831 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417898832
+["pdflatex"] 1417943283 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417943284
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -75,6 +75,7 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption.sty" 1368312746 65148 c61accbd2b9a5316d9be0887ec48d722 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty" 1368312746 62748 b02c0dc118f5f35146d37cec569e83b1 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/caption/subcaption.sty" 1360019375 4351 ee16013c18d101f9ecb20e53efde17b4 ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/environ/environ.sty" 1399239813 4378 f429f0da968c278653359293040a8f52 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/framed/framed.sty" 1338588508 22449 7ec15c16d0d66790f28e90343c5434a3 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/geometry/geometry.sty" 1284422013 40502 e003406220954b0716679d7928aedd8a ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty" 1254151804 14183 42a8fc761b806986eef292369afc2988 ""
@@ -90,7 +91,9 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/graphics.cfg" 1278958963 3563 d35e897cae3b8c6848f6677b73370b54 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/mathtools/mathtools.sty" 1407448394 51615 1114ea8724647aaa1fd96f7f8f11a282 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/mathtools/mhsetup.sty" 1407448394 5175 696879833890ce832e12746d98d0e932 ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everysel.sty" 1320274502 4623 936bfb87af7b91b6496a2317f80db16b ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/ms/everyshi.sty" 1177890616 3878 6aa7c08ff2621006e0603349e40a30a8 ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/ms/ragged2e.sty" 1244852698 9938 95cd4dc3edfd2c1a9e8f3f4cc43db1ce ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty" 1303254447 12029 04d7fdf76e0464c23b5aa3a727952d7c ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/grfext.sty" 1335995445 7075 bd0c34fbf1ae8fd1debd2a554e41b2d5 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty" 1335995445 22417 c74ff4af6a1aa2b65d1924020edbbe11 ""
@@ -109,12 +112,16 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/textpos/textpos.sty" 1388878944 11013 3acb1c95f412b6ae96ea34d059d72895 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty" 1415144112 10002 a0be2e7e424269a324a1fe0bef571d9f ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/tools/multicol.sty" 1415144112 29416 71a0adafcb49c324fb68f97648633a9c ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/trimspaces/trimspaces.sty" 1253232110 1380 971a51b00a14503ddf754cab24c3f209 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/vwcol/vwcol.sty" 1215168547 11507 5c23972a927552c374153303a42c3862 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "cs229-poster.aux" 1417898832 132 cb465b832a9ca178e3fa5b7a3150b22d ""
-  "cs229-poster.tex" 1417898819 13606 27a17468ce85d53cf5c861fb5bec51e7 ""
+  "cs229-poster.aux" 1417943284 140 5f5c4412cd02d014e0542234efb95fcf ""
+  "cs229-poster.tex" 1417943282 10375 287898e74a867931472fd3fac1b77b7d ""
   "defs.tex" 1401163454 1066 8f96c49ac6d27de89f7987497da441ec ""
+  "intro-fig.pdf" 1417935031 197747 d94f8c050a3a5ecd9a04b8c02a967363 ""
+  "lol-icon.pdf" 1417942116 16783 48f6097d1b7cd851204372fac7dcf541 ""
   (generated)
   "cs229-poster.log"
   "cs229-poster.aux"

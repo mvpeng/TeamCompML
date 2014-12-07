@@ -5,6 +5,8 @@ function [pred, predObj, mu] = runTeamCompPred(compressor, classifier)
 % Input
 %   compressor : string indicating k-means ('kmeans'), DP-means 
 %                ('dpmeans'), EM Gaussian mixture model ('emgmm')
+%   classifier : string indicating SVM ('svm'), GDA ('gda'), or logistic
+%                regression ('lr')
 % Output
 %   pred : predictor function handle that outputs a win/loss (1/0)
 %          classification based on the input data point
@@ -18,7 +20,7 @@ function [pred, predObj, mu] = runTeamCompPred(compressor, classifier)
     EMGMM = 'emgmm';
     SVM = 'svm';
     GDA = 'gda';
-    LR = 'logisticRegression';
+    LR = 'lr';
     
     % check input arguments
     if ~strcmp(compressor, KMEANS) && ...
@@ -54,14 +56,18 @@ function [pred, predObj, mu] = runTeamCompPred(compressor, classifier)
     %  train classifier model and convert predictor to function handle
     if strcmp(classifier, SVM)
         predObj = fitcsvm(X, Y);
+        pred = @(z)predict(predObj, z);
     elseif strcmp(classifier, GDA)
         predObj = fitcdiscr(X, Y);
+        pred = @(z)predict(predObj, z);
     elseif strcmp(classifier, LR)
-        % TODO: code logistic regression algorithm up
-        error('Error: logistic regression algorithm not implemented!');
+        [wt, dev, stats] = glmfit(X, Y, 'binomial', 'link', 'logit', ...
+                                  'estdisp', 'on', 'constant', 'on');
+        predObj.wt = wt;
+        predObj.dev = dev;
+        predObj.stats = stats;
+        pred = @(z)(z * wt(2:end) + wt(1) > 0.5);
     end % if
-    
-    pred = @(z)predict(predObj, z);
     
     fprintf(['\n%s model trained with %s data compression method in ' ...
              '%.2f sec\n'], classifier, compressor, toc(startTime));
