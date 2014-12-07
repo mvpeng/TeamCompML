@@ -40,9 +40,9 @@ function [pred, predObj] = runTeamCompPred(compressor, classifier)
     % get compressed features and labels
     startTime = tic;
     if strcmp(compressor, KMEANS)
-        [X, Y] = getKMeansFeatures(y);
+        [X, Y] = getKMeansFeatures(x, y);
     elseif strcmp(compressor, DPMEANS)
-        [X, Y] = getDPMeansFeatures(y);
+        [X, Y] = getDPMeansFeatures(x, y);
     elseif strcmp(compressor, EMGMM)
         % TODO: code EM algorithm up
         error('Error: EM algorithm not implemented!');
