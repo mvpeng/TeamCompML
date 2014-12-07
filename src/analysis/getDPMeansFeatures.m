@@ -1,4 +1,4 @@
-function [X, Y] = getDPMeansFeatures(x, y)
+function [X, Y, mu] = getDPMeansFeatures(x, y)
 % Use
 %   Returns the DP-means compressed data-trained SVM model.
 % Input
@@ -7,6 +7,7 @@ function [X, Y] = getDPMeansFeatures(x, y)
 % Output
 %   X : feature vector for each game
 %   Y : classification label for each game
+%   mu : cluster centroid positions, where each column is a centroid
 
     % constants
     DPMEANS_DATAFILE = 'results-dpmeans-8clus';

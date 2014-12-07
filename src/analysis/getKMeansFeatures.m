@@ -1,4 +1,4 @@
-function [X, Y] = getKMeansFeatures(x, y)
+function [X, Y, mu] = getKMeansFeatures(x, y)
 % Use
 %   Returns the k-means compressed data-trained SVM model.
 % Input
@@ -7,6 +7,7 @@ function [X, Y] = getKMeansFeatures(x, y)
 % Output
 %   X : feature vector for each game
 %   Y : classification label for each game
+%   mu : cluster centroid positions, where each column is a centroid
 
     % constants
     KMEANS_DATAFILE = 'results-kfold-training-full-3';
