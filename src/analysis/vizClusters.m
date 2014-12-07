@@ -35,12 +35,15 @@ for label = 1:max(c)
     scatter3(xl(:, 1), xl(:, 2), xl(:, 3), 30, colorset(label, :)); hold on;
 end % for label
 grid off; hold off;
-xlabel('Principal component 1', 'FontSize', 14);
-ylabel('Principal component 2', 'FontSize', 14);
-zlabel('Principal component 3', 'FontSize', 14);
-set(gca,'XTickLabel','')
-set(gca,'YTickLabel','')
-set(gca,'ZTickLabel','')
+xlabel('PC 1', 'FontSize', 14);
+ylabel('PC 2', 'FontSize', 14);
+zlabel('PC 3', 'FontSize', 14);
+leg = legend('C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', ...
+             'C10', 'C11', 'C12', 'location', 'best', 'FontSize', 24);
+set(leg, 'FontSize', 14);
+set(gca,'XTickLabel','');
+set(gca,'YTickLabel','');
+set(gca,'ZTickLabel','');
 title('PCA cluster visualization', 'FontSize', 18);
 
 fprintf('Clusters plotted in %.2f sec\n', toc);

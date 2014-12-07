@@ -178,6 +178,8 @@ Mark Peng
   \label{fig:intro}
 \end{figure}
 
+\vspace{-1em}
+
 \begin{itemize}
 
   \item In a game, given the teams' player compositions and their player statistics, we want to predict the players' play style and forecast the game outcome
@@ -231,28 +233,36 @@ Mark Peng
 
 \medskip
 \hrule\medskip
-\Head{Target Game}
+\Head{Numerical Simulation}
 
-\begin{multicols}{2}
+% \begin{multicols}{1}
   \begin{itemize}
     
-    \item \textbf{League of Legends}
+    \item \textbf{Target Game: League of Legends}
     \begin{itemize}
       \item Multiplayer battle arena game with 27 million plays per day
-      \item Free online API to retrieve de-identified game data (120,000 training and 12,000 test samples)
+      \item Free online API to retrieve de-identified game data
       \item Official guide provides clustering information for players based on in-game character choices (e.g., character with good defense)
     \end{itemize}
 
-    \vspace{50pt}
+    % \begin{figure}[!h]
+    %   \centering
+    %   \includegraphics[width=0.25\textwidth]{lol-icon.pdf}
+    %   \label{fig:lol}
+    % \end{figure}
 
-    \begin{figure}[!h]
-      \centering
-      \includegraphics[width=0.30\textwidth]{lol-icon.pdf}
-      \label{fig:lol}
-    \end{figure}
+    \item \textbf{Data samples} Total of 120,000 training and 12,000 test samples
+
+    \item \textbf{Implementation} 
+    \begin{itemize} 
+      \item Clustering and classification algorithms in MATLAB 2014b
+      \item Data processing and feature selection in Python 2.7
+    \end{itemize}
+
+    \item \textbf{Hardware} All simulations on 2.7 GHz Intel Core i7, 8 GB RAM
 
   \end{itemize}
-\end{multicols}
+% \end{multicols}
 
 \end{textblock}
 
@@ -263,7 +273,7 @@ Mark Peng
 
 \begin{itemize}
   
-  \item \textbf{Features} are team compositions for each team in a game based on official game guide's clustering information (each character is mapped to a play style)
+  \item \textbf{Features} are team compositions for all teams in a game based on official game guide's clustering information (each character is mapped to a play style)
 
   \item \textbf{Logistic regression} with 10\% hold-out cross validation
   
@@ -279,37 +289,39 @@ Mark Peng
   
   \item \textbf{Features} are normalized player statistics (damage dealt, money earned,...)
 
-  \item Clustering algorithms
+  \item Clustering algorithms (unsupervised learning)
   \begin{itemize}
     
     \item \textbf{k-means} with 10-fold cross validation over parameter k gave 12 clusters
     
-    \item \textbf{DP-means} is an expectation-maximization algorithm derived using a Dirichlet process mixture model (Kulis and Jordan, 2012)
+    \item \textbf{DP-means} is a nonparametric expectation-maximization algorithm derived using a Dirichlet process mixture model (Kulis and Jordan, 2012)
 
-    Intuitively, a new cluster is formed whenever a point is sufficiently far away from all existing centroids, as determined by some threshold distance \(\lambda\)
+    \item Intuitively, a new cluster is formed whenever a point is sufficiently far away from all existing centroids, as determined by some threshold distance \(\lambda\)
 
-    We ran it with 10\% hold-out cross validation with \(\lambda\) = 3.3, giving 8 clusters
-
-    \item \textbf{Implementation} in MATLAB, ran on 2.7 GHz Intel Core i7, 8 GB RAM
+    \item We ran it with 10\% hold-out cross validation with \(\lambda\) = 3.3, giving 8 clusters
 
     \begin{addmargin}[0em]{2em}% 1em left, 2em right
       \begin{leftbar}
         \begin{tabbing}
+
           {\bf given} training set of size \(N\), threshold distance \(\lambda\) \\*[\smallskipamount]
-          {\bf repeat until} clusters converge \\
+          {\bf repeat} \\
           \qquad \= For \(n\) = 1, \(\ldots\) , \(N\) \\
           \qquad \qquad \= 1.\ Assign sample \(n\) to the closest cluster if the contribution to \\ \hspace{113pt} objective  from the squared distance is at most \(\lambda^{2}\) \\
-          \> 2.\ Otherwise, form a new cluster with just sample \(n\)
+          \> 2.\ Otherwise, form a new cluster with just sample \(n\) \\
+          {\bf until} clusters converge
         \end{tabbing}
       \end{leftbar}
     \end{addmargin}
 
   \end{itemize}
 
+  \medskip
+
   \begin{table}[htbp!]
     \begin{minipage}{\textwidth}
       \centering
-      \caption*{Summary: Play style clustering algorithm results (10 trials average)}
+      \caption*{\textbf{Summary:} Play style clustering algorithm results (10 trials average)}
       \begin{tabular}{lcccc}
         \toprule
         & cross validation method & no. of clusters & cpu time (s) \\ \midrule
@@ -325,49 +337,109 @@ Mark Peng
 
 \medskip
 \hrule\medskip
-\Head{Cluster Visualization}
+\Head{Cluster Intepretation}
 
 \begin{itemize}
-  
-  \item \textbf{Principal component analysis} We used 3 principal components to visualize our full dataset in 3D; observe that the data is clearly clustered
 
-  \begin{figure}[!h]
-    \centering
-    \includegraphics[trim=48pt 180pt 70pt 260pt, clip, width=0.8\textwidth]{viz-cluster.pdf}
-    \label{fig:viz}
-  \end{figure}
+  \item Surprisingly accurate intuition behind clustering
+
+  \begin{multicols}{2}
+
+    \begin{itemize}
+      
+      \item \textbf{Physical damage attacker}
+      \begin{itemize}
+        \item Clusters 1, 7, and 9
+        \item Differ in risk attitudes
+      \end{itemize}
+      
+      \item \textbf{Ambusher}
+      \begin{itemize}
+        \item Clusters 3, 8, 11, and 12
+        \item Team oriented vs. lone wolf
+        \item Includes ``hybrid'' roles with other play style clusters
+      \end{itemize}
+      
+      \item \textbf{Team support}
+      \begin{itemize}
+        \item Cluster 5: Many assists in kills
+      \end{itemize}
+      
+      \item \textbf{Magic attacker}
+      \begin{itemize}
+        \item Clusters 6 and 10: Many kills
+        \item Ranged- vs. close-combat
+      \end{itemize}
+      
+      \item \textbf{Miscellaneous}
+      \begin{itemize}
+        \item Cluster 2: All-around average
+        \item Cluster 4: Novice player
+      \end{itemize}
+
+    \end{itemize}
+
+  \end{multicols}
 
 \end{itemize}
 
+\begin{figure}[!h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{clusters-intuit.pdf}
+  \label{fig:intuit}
+\end{figure}
+
 \end{textblock}
 
-  
+
 \begin{textblock}{7.0}(16,1.5)
 
+\hrule\medskip
+\Head{Cluster Visualization}
+
+\begin{itemize}
+  \item \textbf{Principal component analysis} helps us visualize our dataset in 3D
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[trim=60pt 210pt 70pt 250pt, clip, width=0.8\textwidth]{viz-cluster.pdf}
+    \label{fig:viz}
+  \end{figure}
+\end{itemize}
+
+\medskip
 \hrule\medskip
 \Head{Game Outcome Prediction}
 
 \begin{itemize}
 
-  \item \textbf{Features} are team compositions for each team in a game based on behavioral groupings generated from k-means and DP-means clustering
+  \item \textbf{Features} are team compositions for all teams in a game based on behavioral groupings generated from k-means and DP-means clustering
 
-  \item Classification algorithms
+  \item \textbf{Labels} are win/loss for each game (if team 1 \emph{beats} team 2, label = 1)
+
+  \item Classification algorithms (supervised learning)
   \begin{itemize}
     
-    \item \textbf{Logistic regression} Lorem ipsum
+    \item \textbf{Logistic regression} generalized linear model with Bernoulli distribution
 
-    \item \textbf{Gaussian discriminant analysis} Lorem ipsum
+    \item \textbf{Gaussian discriminant analysis} assuming data is Gaussian-distributed
 
-    \item \textbf{Support vector machine} Lorem ipsum
+    \item \textbf{Support vector machine} assuming data is separable by soft-margins
+
+    \item \textbf{Cross validation} 10\% hold-out for all methods
 
   \end{itemize}
 
+  \item \textbf{Best predictor} uses features based on k-means clustered team compositions for each game, trained on an SVM; 70.4\% accuracy (vs. 55.1\% baseline)
+
 \end{itemize}
+
+\medskip
 
 \begin{table}[htbp!]
   \begin{minipage}{\textwidth}
     \centering
-    \caption*{Summary: Outcome prediction algorithm results (10 trials average)}
+    \caption*{\textbf{Summary:} Outcome prediction algorithm results (10 trials average)}
     \begin{tabular}{lcccccc}
       \toprule
       & \multicolumn{2}{c}{k-means (\%)} & \multicolumn{2}{c}{DP-means (\%)} & \multicolumn{2}{c}{cpu time (s)} \\
@@ -387,7 +459,11 @@ Mark Peng
 
 \begin{itemize}
   
-  \item Lorem ipsum
+  \item 
+
+  \item 
+
+  \item 
 
 \end{itemize}
 
@@ -395,7 +471,7 @@ Mark Peng
 \hrule\medskip
 \Head{Acknowledgements}
 
-We thank Professor Andrew Ng, the instructor team, and fellow students for their help with and feedback on our work.
+We thank Professor Andrew Ng and the instructor team.
 
 \end{textblock}
 

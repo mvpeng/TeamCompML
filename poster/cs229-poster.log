@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 05:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 14:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -818,55 +818,61 @@ File: intro-fig.pdf Graphic file (type pdf)
 Package pdftex.def Info: intro-fig.pdf used on input line 177.
 (pdftex.def)             Requested size: 766.54198pt x 205.93826pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--201
+Underfull \hbox (badness 10000) in paragraph at lines 202--203
 []\OT1/cmss/m/n/24.88 Predict from game server
  []
 
-<lol-icon.pdf, id=5, 542.025pt x 542.025pt>
-File: lol-icon.pdf Graphic file (type pdf)
- <use lol-icon.pdf>
-Package pdftex.def Info: lol-icon.pdf used on input line 250.
-(pdftex.def)             Requested size: 229.96492pt x 229.96472pt.
 
-Overfull \hbox (15.82109pt too wide) in paragraph at lines 287--288
-[]\OT1/cmss/bx/n/24.88 DP-means \OT1/cmss/m/n/24.88 is an expectation-maximizat
-ion al-go-rithm de-rived us-ing a Dirich-
+Underfull \hbox (badness 5652) in paragraph at lines 360--361
+[]\OT1/cmss/m/n/24.88 Includes ``hy-brid'' roles with
  []
+
+<clusters-intuit.pdf, id=5, 722.7pt x 169.63374pt>
+File: clusters-intuit.pdf Graphic file (type pdf)
+ <use clusters-intuit.pdf>
+Package pdftex.def Info: clusters-intuit.pdf used on input line 388.
+(pdftex.def)             Requested size: 689.88309pt x 161.93282pt.
 
 <viz-cluster.pdf, id=6, 614.295pt x 794.97pt>
 File: viz-cluster.pdf Graphic file (type pdf)
  <use viz-cluster.pdf>
-Package pdftex.def Info: viz-cluster.pdf used on input line 336.
-(pdftex.def)             Requested size: 613.23592pt x 438.64708pt.
- [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+Package pdftex.def Info: viz-cluster.pdf used on input line 405.
+(pdftex.def)             Requested size: 613.23592pt x 424.19072pt.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <24.88> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 418.
+
+
+[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 Non-PDF special ignored!
 
 
 Non-PDF special ignored!
-Non-PDF special ignored! <./viz-cluster.pdf> <./intro-fig.pdf> <./lol-icon.pdf>
-] (./cs229-poster.aux)
+Non-PDF special ignored! <./viz-cluster.pdf> <./intro-fig.pdf> <./clusters-intu
+it.pdf>] (./cs229-poster.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 15428 strings out of 493109
- 300094 string characters out of 6135004
- 375772 words of memory out of 5000000
- 18576 multiletter control sequences out of 15000+600000
- 8929 words of font info for 32 fonts, out of 8000000 for 9000
+ 15431 strings out of 493109
+ 300194 string characters out of 6135004
+ 379773 words of memory out of 5000000
+ 18579 multiletter control sequences out of 15000+600000
+ 9287 words of font info for 33 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,12n,54p,429b,380s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,12n,54p,429b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
 ></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></
 usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pfb><
 /usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on cs229-poster.pdf (1 page, 305057 bytes).
+Output written on cs229-poster.pdf (1 page, 415520 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 126 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  34 words of extra memory for PDF output out of 10000 (max. 10000000)
 

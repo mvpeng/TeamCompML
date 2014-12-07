@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1417960006 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417960007
+["pdflatex"] 1417993100 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417993101
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -118,13 +118,13 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/vwcol/vwcol.sty" 1215168547 11507 5c23972a927552c374153303a42c3862 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "cs229-poster.aux" 1417960007 152 60d8ba24b9d4d563c7207cc1eab792c8 ""
-  "cs229-poster.tex" 1417960006 11814 f4f03d18a9f6ba195af06ebca2d67195 ""
+  "clusters-intuit.pdf" 1417992725 124871 cb7b6616efb0ea576b76ccde11091541 ""
+  "cs229-poster.aux" 1417993101 155 df1e4a7bc27b6c5f76dda1a1735c2f43 ""
+  "cs229-poster.tex" 1417993099 13732 9ce0bd31ac49c551e127a907354faaf0 ""
   "defs.tex" 1401163454 1066 8f96c49ac6d27de89f7987497da441ec ""
   "intro-fig.pdf" 1417935031 197747 d94f8c050a3a5ecd9a04b8c02a967363 ""
-  "lol-icon.pdf" 1417942116 16783 48f6097d1b7cd851204372fac7dcf541 ""
-  "viz-cluster.pdf" 1417949622 28484 c0848912680d2eb423ef8e70d99715f3 ""
+  "viz-cluster.pdf" 1417988532 29294 bb2bdd09cc0d7b08a50bb56a74234257 ""
   (generated)
   "cs229-poster.log"
-  "cs229-poster.pdf"
   "cs229-poster.aux"
+  "cs229-poster.pdf"
