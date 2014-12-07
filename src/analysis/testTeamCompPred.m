@@ -46,3 +46,6 @@ fprintf('%10.4f\t%10.4f\t%10.4f\n\n', accKS, accKG, accKL);
 fprintf('%10s\t%10s\t%10s\n', 'dpmeans, svm', 'dpmeans, gda', 'dpmeans, lr');
 fprintf('%s\n',repmat('-', 50, 1));
 fprintf('%10.4f\t%10.4f\t%10.4f\n', accDS, accDG, accDL);
+
+OUTFILE = sprintf('ResultsTable-%s.mat', datestr(clock));
+save(OUTFILE, 'accKS', 'accKG', 'accKL', 'accDS', 'accDG', 'accDL');

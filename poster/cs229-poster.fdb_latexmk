@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1417943283 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417943284
+["pdflatex"] 1417947564 "cs229-poster.tex" "cs229-poster.pdf" "cs229-poster" 1417947565
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty" 1284331290 1458 43ab4710dc82f3edeabecd0d099626b2 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty" 1335995445 7612 c47308d923ec19888707b0f1792b326a ""
@@ -117,12 +117,12 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/vwcol/vwcol.sty" 1215168547 11507 5c23972a927552c374153303a42c3862 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/wrapfig/wrapfig.sty" 1137111090 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/xcolor/xcolor.sty" 1169481954 55224 a43bab84e0ac5e6efcaf9a98bde73a94 ""
-  "cs229-poster.aux" 1417943284 140 5f5c4412cd02d014e0542234efb95fcf ""
-  "cs229-poster.tex" 1417943282 10375 287898e74a867931472fd3fac1b77b7d ""
+  "cs229-poster.aux" 1417947565 140 5f5c4412cd02d014e0542234efb95fcf ""
+  "cs229-poster.tex" 1417947562 10443 ffedd3ed69771fd84819aa06234cafc4 ""
   "defs.tex" 1401163454 1066 8f96c49ac6d27de89f7987497da441ec ""
   "intro-fig.pdf" 1417935031 197747 d94f8c050a3a5ecd9a04b8c02a967363 ""
   "lol-icon.pdf" 1417942116 16783 48f6097d1b7cd851204372fac7dcf541 ""
   (generated)
   "cs229-poster.log"
-  "cs229-poster.aux"
   "cs229-poster.pdf"
+  "cs229-poster.aux"
