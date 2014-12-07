@@ -89,6 +89,7 @@
 \usepackage{multicol}
 \setlength{\columnsep}{1cm}
 \usepackage{vwcol} 
+\usepackage{booktabs}
 
 % Set up the grid
 %
@@ -222,8 +223,8 @@ Mark Peng
 
   \item In order to
   \begin{itemize}
-    \item \emph{Gain insight} on player behaviors and game strategies
-    \item \emph{Maximize accuracy} on predicting game outcomes
+    \item \textbf{Gain insight} on player behaviors and game strategies
+    \item \textbf{Maximize accuracy} on predicting game outcomes
   \end{itemize} 
 
 \end{itemize}
@@ -238,11 +239,11 @@ Mark Peng
     \item \textbf{League of Legends}
     \begin{itemize}
       \item Multiplayer battle arena game with 27 million plays per day
-      \item Free online API to retrieve de-identified game data
+      \item Free online API to retrieve de-identified game data (120,000 training and 12,000 test samples)
       \item Official guide provides clustering information for players based on in-game character choices (e.g., character with good defense)
     \end{itemize}
 
-    \vspace{30pt}
+    \vspace{50pt}
 
     \begin{figure}[!h]
       \centering
@@ -266,8 +267,6 @@ Mark Peng
 
   \item \textbf{Logistic regression} with 10\% hold-out cross validation
   
-  \item \textbf{Data samples} with 120,000 training samples and 12,000 test samples
-  
   \item \textbf{Poor accuracy} of 55.1\% on training samples, 54.4\% on test samples
 
 \end{itemize}
@@ -276,13 +275,69 @@ Mark Peng
 \hrule\medskip
 \Head{Behavioral Clustering}
 
+\begin{itemize}
+  
+  \item \textbf{Features} are normalized player statistics (damage dealt, money earned,...)
 
+  \item Clustering algorithms
+  \begin{itemize}
+    
+    \item \textbf{k-means} with 10-fold cross validation over parameter k gave 12 clusters
+    
+    \item \textbf{DP-means} is an expectation-maximization algorithm derived using a Dirichlet process mixture model (Kulis and Jordan, 2012)
+
+    Intuitively, a new cluster is formed whenever a point is sufficiently far away from all existing centroids, as determined by some threshold distance \(\lambda\)
+
+    We ran it with 10\% hold-out cross validation with \(\lambda\) = 3.3, giving 8 clusters
+
+    \item \textbf{Implementation} in MATLAB, ran on 2.7 GHz Intel Core i7, 8 GB RAM
+
+    \begin{addmargin}[0em]{2em}% 1em left, 2em right
+      \begin{leftbar}
+        \begin{tabbing}
+          {\bf given} training set of size \(N\), threshold distance \(\lambda\) \\*[\smallskipamount]
+          {\bf repeat until} clusters converge \\
+          \qquad \= For \(n\) = 1, \(\ldots\) , \(N\) \\
+          \qquad \qquad \= 1.\ Assign sample \(n\) to the closest cluster if the contribution to \\ \hspace{113pt} objective  from the squared distance is at most \(\lambda^{2}\) \\
+          \> 2.\ Otherwise, form a new cluster with just sample \(n\)
+        \end{tabbing}
+      \end{leftbar}
+    \end{addmargin}
+
+  \end{itemize}
+
+  \begin{table}[htbp!]
+    \begin{minipage}{\textwidth}
+      \centering
+      \caption*{Summary: Play style clustering algorithm results (10 trials average)}
+      \begin{tabular}{lcccc}
+        \toprule
+        & cross validation method & no. of clusters & cpu time (s) \\ \midrule
+        k-means & k-fold (k = 10) & 12 & 154.1 \\
+        DP-means (\(\lambda\) = 3.3) & 10\% hold-out & 8 & 65.4 \\
+        \bottomrule
+      \end{tabular}
+      \label{table:cluster}
+    \end{minipage} 
+  \end{table}
+
+\end{itemize}
 
 \medskip
 \hrule\medskip
 \Head{Cluster Visualization}
 
+\begin{itemize}
+  
+  \item \textbf{Principal component analysis} We used 3 principal components to visualize our full dataset in 3D; observe that the data is clearly clustered
 
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[trim=48pt 180pt 70pt 260pt, clip, width=0.8\textwidth]{viz-cluster.pdf}
+    \label{fig:viz}
+  \end{figure}
+
+\end{itemize}
 
 \end{textblock}
 
@@ -290,60 +345,37 @@ Mark Peng
 \begin{textblock}{7.0}(16,1.5)
 
 \hrule\medskip
-\Head{Results and Analysis}
-
-\begin{itemize}
-  
-  \item \textbf{Best structure} We picked the top 8 structures based on the Bayesian score, ran parameter learning on them, and tested their prediction accuracies based on classifying test sets using inference
-
-\end{itemize}
-
-\end{textblock}
-
-\begin{textblock}{7.0}(16,2.75)
-
-\begin{figure}[!h]
-  \centering
-  \hbox{
-    \hspace{-2em}
-    % \includegraphics[width=1.1\textwidth]{bn-struct.pdf}
-  }
-  \label{fig3}
-\end{figure}
-
-\end{textblock}
-
-\begin{textblock}{7.0}(16,5.25)
+\Head{Game Outcome Prediction}
 
 \begin{itemize}
 
-  \item \textbf{Error rates} Varying the number of missing variables, the error rates were 15--19\% on 1,000 test samples, which are competitive with the 16\% baseline
+  \item \textbf{Features} are team compositions for each team in a game based on behavioral groupings generated from k-means and DP-means clustering
 
-  \item \textbf{Runtime} Depending on the number of missing variables, a single prediction can take up to 30 seconds---much more expensive than our baseline
+  \item Classification algorithms
+  \begin{itemize}
+    
+    \item \textbf{Logistic regression} Lorem ipsum
+
+    \item \textbf{Gaussian discriminant analysis} Lorem ipsum
+
+    \item \textbf{Support vector machine} Lorem ipsum
+
+  \end{itemize}
 
 \end{itemize}
-
-\end{textblock}
-
-\begin{textblock}{7.0}(16,6.2)
-
-\begin{figure}[!h]
-  \centering
-  % \includegraphics[trim=3pt 3pt 3pt 10pt, clip, width=0.8\textwidth]{../src/Excel/BayesStructureChart.pdf}
-  \label{fig3}
-\end{figure}
 
 \begin{table}[htbp!]
   \begin{minipage}{\textwidth}
     \centering
-    \caption*{Summary: Classification results with varying number of missing features}
-    \begin{tabular}{|c||c|c|c|c|}
-      \hline
-      \#missing & Error rate & False positive & False negative & Pred time (sec) \\ \hline \hline
-      3 & 0.1662 & 0.0363 & 0.1299 & 3.754 \\ \hline
-      5 & 0.1511 & 0.0302 & 0.1208 & 6.437 \\ \hline
-      8 & 0.1339 & 0.0272 & 0.1067 & 9.672 \\ \hline
-      10 & 0.1299 & 0.0252 & 0.1047 & 11.859 \\ \hline
+    \caption*{Summary: Outcome prediction algorithm results (10 trials average)}
+    \begin{tabular}{lcccccc}
+      \toprule
+      & \multicolumn{2}{c}{k-means (\%)} & \multicolumn{2}{c}{DP-means (\%)} & \multicolumn{2}{c}{cpu time (s)} \\
+      & train acc. & test acc. & train acc. & test acc. & k-means & DP-means \\ \midrule
+      LR & 72.25 & 68.75 & 69.67 & 67.11 & 7.4 & 7.1 \\
+      GDA & 74.79 & 70.14 & 70.88 & 68.39 & 7.7 & 7.1 \\
+      SVM & 74.75 & 70.39 & 71.71 & 69.21 & 91.2 & 41.6 \\
+      \bottomrule
     \end{tabular}
     \label{table:summary}
   \end{minipage} 
@@ -355,11 +387,7 @@ Mark Peng
 
 \begin{itemize}
   
-  \item Our model is suitable for diabetes prediction on existing databases (even with incomplete records) to detect patients at risk for diabetes
-  
-  \item Incorporate expert knowledge in feature selection and deciding the structure
-  
-  \item Consider different inference methods for runtime and accuracy improvement
+  \item Lorem ipsum
 
 \end{itemize}
 

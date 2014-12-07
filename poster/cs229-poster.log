@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 02:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  7 DEC 2014 05:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -664,40 +664,56 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \vwcol@plainbox=\box69
 \vwcol@outputbox=\box70
 )
+(/usr/local/texlive/2014/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen209
+\lightrulewidth=\dimen210
+\cmidrulewidth=\dimen211
+\belowrulesep=\dimen212
+\belowbottomsep=\dimen213
+\aboverulesep=\dimen214
+\abovetopsep=\dimen215
+\cmidrulesep=\dimen216
+\cmidrulekern=\dimen217
+\defaultaddspace=\dimen218
+\@cmidla=\count149
+\@cmidlb=\count150
+\@aboverulesep=\dimen219
+\@belowrulesep=\dimen220
+\@thisruleclass=\count151
+\@lastruleclass=\count152
+\@thisrulewidth=\dimen221
+)
 Grid set 23 x 12 = 109.506pt x 149.66148pt
 TextBlockOrigin set to 40mm x 40mm
-(./cs229-poster.aux
-
-LaTeX Warning: Label `fig3' multiply defined.
-
-)
+(./cs229-poster.aux)
 \openout1 = `cs229-poster.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
-LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
+LaTeX Font Info:    ... okay on input line 111.
  ABD: EveryShipout initializing macros
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count149
-\scratchdimen=\dimen209
+\scratchcounter=\count153
+\scratchdimen=\dimen222
 \scratchbox=\box71
-\nofMPsegments=\count150
-\nofMParguments=\count151
+\nofMPsegments=\count154
+\nofMParguments=\count155
 \everyMPshowfont=\toks35
-\MPscratchCnt=\count152
-\MPscratchDim=\dimen210
-\MPnumerator=\count153
-\makeMPintoPDFobject=\count154
+\MPscratchCnt=\count156
+\MPscratchDim=\dimen223
+\MPnumerator=\count157
+\makeMPintoPDFobject=\count158
 \everyMPtoPDFconversion=\toks36
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -781,72 +797,76 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 110.
+LaTeX Info: Redefining \selectfont on input line 111.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <35.83> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 144.
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 145.
 
 
-LaTeX Font Info:    Try loading font information for OMS+cmss on input line 170
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 171
 .
-LaTeX Font Info:    No file OMScmss.fd. on input line 170.
+LaTeX Font Info:    No file OMScmss.fd. on input line 171.
 
 LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 170.
+(Font)              for symbol `textbullet' on input line 171.
 
 <intro-fig.pdf, id=4, 739.76375pt x 198.7425pt>
 File: intro-fig.pdf Graphic file (type pdf)
  <use intro-fig.pdf>
-Package pdftex.def Info: intro-fig.pdf used on input line 176.
+Package pdftex.def Info: intro-fig.pdf used on input line 177.
 (pdftex.def)             Requested size: 766.54198pt x 205.93826pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 199--200
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
 []\OT1/cmss/m/n/24.88 Predict from game server
  []
-
-
-LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <24.88> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 225.
-
 
 <lol-icon.pdf, id=5, 542.025pt x 542.025pt>
 File: lol-icon.pdf Graphic file (type pdf)
  <use lol-icon.pdf>
-Package pdftex.def Info: lol-icon.pdf used on input line 249.
+Package pdftex.def Info: lol-icon.pdf used on input line 250.
 (pdftex.def)             Requested size: 229.96492pt x 229.96472pt.
+
+Overfull \hbox (15.82109pt too wide) in paragraph at lines 287--288
+[]\OT1/cmss/bx/n/24.88 DP-means \OT1/cmss/m/n/24.88 is an expectation-maximizat
+ion al-go-rithm de-rived us-ing a Dirich-
+ []
+
+<viz-cluster.pdf, id=6, 614.295pt x 794.97pt>
+File: viz-cluster.pdf Graphic file (type pdf)
+ <use viz-cluster.pdf>
+Package pdftex.def Info: viz-cluster.pdf used on input line 336.
+(pdftex.def)             Requested size: 613.23592pt x 438.64708pt.
  [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 Non-PDF special ignored!
 
 
 Non-PDF special ignored!
-Non-PDF special ignored! <./intro-fig.pdf> <./lol-icon.pdf>]
-(./cs229-poster.aux)
+Non-PDF special ignored! <./viz-cluster.pdf> <./intro-fig.pdf> <./lol-icon.pdf>
+] (./cs229-poster.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 15362 strings out of 493109
- 299143 string characters out of 6135004
- 372052 words of memory out of 5000000
- 18515 multiletter control sequences out of 15000+600000
- 9287 words of font info for 33 fonts, out of 8000000 for 9000
+ 15428 strings out of 493109
+ 300094 string characters out of 6135004
+ 375772 words of memory out of 5000000
+ 18576 multiletter control sequences out of 15000+600000
+ 8929 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,11n,54p,429b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pf
-b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pf
-b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
->
-Output written on cs229-poster.pdf (1 page, 261531 bytes).
+ 55i,12n,54p,429b,380s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></
+usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi17.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on cs229-poster.pdf (1 page, 305057 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 102 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 34 words of extra memory for PDF output out of 10000 (max. 10000000)
 

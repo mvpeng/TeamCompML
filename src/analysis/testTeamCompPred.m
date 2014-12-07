@@ -73,7 +73,7 @@ accDSTrain = sum(predDS(xDS) == yDS) / length(yDS);
 accDGTrain = sum(predDG(xDG) == yDG) / length(yDG);
 accDLTrain = sum(predDL(xDL) == yDL) / length(yDL);
 
-fprintf('Predictor accuracies:\n');
+fprintf('Predictor accuracies on trainset:\n');
 fprintf('%10s\t%10s\t%10s\n', 'kmeans, svm', 'kmeans, gda', 'kmeans, lr');
 fprintf('%s\n',repmat('-', 50, 1));
 fprintf('%10.4f\t%10.4f\t%10.4f\n\n', accKSTrain, accKGTrain, accKLTrain);

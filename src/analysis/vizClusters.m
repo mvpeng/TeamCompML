@@ -29,13 +29,18 @@ fprintf('Cluster labeling done in %.2f sec\n', toc);
 
 % plot stuff
 tic; figure;
+colorset = varycolor(max(c));
 for label = 1:max(c)
     xl = xr(c == label, :);
-    scatter3(xl(:, 1), xl(:, 2), xl(:, 3)); hold on;
+    scatter3(xl(:, 1), xl(:, 2), xl(:, 3), 30, colorset(label, :)); hold on;
 end % for label
 grid off; hold off;
+xlabel('Principal component 1', 'FontSize', 14);
+ylabel('Principal component 2', 'FontSize', 14);
+zlabel('Principal component 3', 'FontSize', 14);
+set(gca,'XTickLabel','')
+set(gca,'YTickLabel','')
+set(gca,'ZTickLabel','')
+title('PCA cluster visualization', 'FontSize', 18);
+
 fprintf('Clusters plotted in %.2f sec\n', toc);
-xlabel('Principal component 1');
-ylabel('Principal component 2');
-zlabel('Principal component 3');
-title('Cluster visualization');

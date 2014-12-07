@@ -26,6 +26,7 @@ function [c, mu, k] = myDPMeans(X, XTest, lambda)
             'iter', 'k', 'objval', 'diff', 'deltaConv', 'cpu time');
     fprintf('%s\n',repmat('-', 80, 1));
 
+    tStart = tic;
     for iter = 1:MAX_ITERS
 
         tic;
@@ -73,7 +74,7 @@ function [c, mu, k] = myDPMeans(X, XTest, lambda)
                 iter, k, objval, diff, delta, toc);
         
         if hasConverged
-            saveResults(c, mu, k, objval);
+            saveResults(c, mu, k, objval, toc(tStart));
             break
         end % if
         objvalPrev = objval;
@@ -104,7 +105,7 @@ function c = getLabels(X, mu)
 end
 
 
-function saveResults(c, mu, k, objval)
+function saveResults(c, mu, k, objval, cputime)
 % Use
 %   Saves the results for the best DP-means clustering.
 % Input
@@ -117,6 +118,7 @@ function saveResults(c, mu, k, objval)
     results.mu = mu;
     results.distortionValue = objval;
     results.k = k;
+    results.cputime = cputime;
     outfile = sprintf('results-%s-%dclus-%s.mat', 'dpmeans', ...
                       k, datestr(clock));
     save(outfile, 'results');
