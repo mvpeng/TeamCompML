@@ -35,7 +35,4 @@ for label = 1:max(c)
 end % for label
 grid off; hold off;
 fprintf('Clusters plotted in %.2f sec\n', toc);
-xlabel('Principal component 1');
-ylabel('Principal component 2');
-zlabel('Principal component 3');
-title('Cluster visualization');
+xlabel('Compone

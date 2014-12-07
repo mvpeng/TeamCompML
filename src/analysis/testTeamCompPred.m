@@ -5,10 +5,18 @@ clear; close all; clc;
 
 % load testing data
 fprintf('Loading testing data...');
-DATAFILE = '../lolapi/testing_v3.csv';
-testset = csvread(DATAFILE, 1, 0);
+TEST_FILE = '../lolapi/testing_v3.csv';
+testset = csvread(TEST_FILE, 1, 0);
 xTest = testset(:, 2:end);
 yTest = testset(:, 1);
+fprintf('done\n');
+
+% load training data
+fprintf('Loading training data...');
+TRAIN_FILE = '../lolapi/training_full_v3.csv';
+trainset = csvread(TRAIN_FILE, 1, 0);
+xTrain = trainset(:, 2:end);
+yTrain = trainset(:, 1);
 fprintf('done\n');
 
 % get predictors
@@ -31,21 +39,48 @@ fprintf('Extracting features from testset data...');
 [xDL, yDL] = clusterLabelsToFeatures(getClusterLabels(xTest, muDL), yTest);
 fprintf('done\n');
 
-% get accuracies from predictors
-accKS = sum(predKS(xKS) == yKS) / length(yKS);
-accKG = sum(predKG(xKG) == yKG) / length(yKG);
-accKL = sum(predKL(xKL) == yKL) / length(yKL);
-accDS = sum(predDS(xDS) == yDS) / length(yDS);
-accDG = sum(predDG(xDG) == yDG) / length(yDG);
-accDL = sum(predDL(xDL) == yDL) / length(yDL);
+% get accuracies from predictors on testset
+accKSTest = sum(predKS(xKS) == yKS) / length(yKS);
+accKGTest = sum(predKG(xKG) == yKG) / length(yKG);
+accKLTest = sum(predKL(xKL) == yKL) / length(yKL);
+accDSTest = sum(predDS(xDS) == yDS) / length(yDS);
+accDGTest = sum(predDG(xDG) == yDG) / length(yDG);
+accDLTest = sum(predDL(xDL) == yDL) / length(yDL);
+
+fprintf('Predictor accuracies on testset:\n');
+fprintf('%10s\t%10s\t%10s\n', 'kmeans, svm', 'kmeans, gda', 'kmeans, lr');
+fprintf('%s\n',repmat('-', 50, 1));
+fprintf('%10.4f\t%10.4f\t%10.4f\n\n', accKSTest, accKGTest, accKLTest);
+fprintf('%10s\t%10s\t%10s\n', 'dpmeans, svm', 'dpmeans, gda', 'dpmeans, lr');
+fprintf('%s\n',repmat('-', 50, 1));
+fprintf('%10.4f\t%10.4f\t%10.4f\n', accDSTest, accDGTest, accDLTest);
+
+% get accuracies from predictors on trainset
+fprintf('Extracting features from trainset data...');
+[xKS, yKS] = clusterLabelsToFeatures(getClusterLabels(xTrain, muKS), yTrain);
+[xKG, yKG] = clusterLabelsToFeatures(getClusterLabels(xTrain, muKG), yTrain);
+[xKL, yKL] = clusterLabelsToFeatures(getClusterLabels(xTrain, muKL), yTrain);
+[xDS, yDS] = clusterLabelsToFeatures(getClusterLabels(xTrain, muDS), yTrain);
+[xDG, yDG] = clusterLabelsToFeatures(getClusterLabels(xTrain, muDG), yTrain);
+[xDL, yDL] = clusterLabelsToFeatures(getClusterLabels(xTrain, muDL), yTrain);
+fprintf('done\n');
+
+% get accuracies from predictors on trainset
+accKSTrain = sum(predKS(xKS) == yKS) / length(yKS);
+accKGTrain = sum(predKG(xKG) == yKG) / length(yKG);
+accKLTrain = sum(predKL(xKL) == yKL) / length(yKL);
+accDSTrain = sum(predDS(xDS) == yDS) / length(yDS);
+accDGTrain = sum(predDG(xDG) == yDG) / length(yDG);
+accDLTrain = sum(predDL(xDL) == yDL) / length(yDL);
 
 fprintf('Predictor accuracies:\n');
 fprintf('%10s\t%10s\t%10s\n', 'kmeans, svm', 'kmeans, gda', 'kmeans, lr');
 fprintf('%s\n',repmat('-', 50, 1));
-fprintf('%10.4f\t%10.4f\t%10.4f\n\n', accKS, accKG, accKL);
+fprintf('%10.4f\t%10.4f\t%10.4f\n\n', accKSTrain, accKGTrain, accKLTrain);
 fprintf('%10s\t%10s\t%10s\n', 'dpmeans, svm', 'dpmeans, gda', 'dpmeans, lr');
 fprintf('%s\n',repmat('-', 50, 1));
-fprintf('%10.4f\t%10.4f\t%10.4f\n', accDS, accDG, accDL);
+fprintf('%10.4f\t%10.4f\t%10.4f\n', accDSTrain, accDGTrain, accDLTrain);
 
 OUTFILE = sprintf('ResultsTable-%s.mat', datestr(clock));
-save(OUTFILE, 'accKS', 'accKG', 'accKL', 'accDS', 'accDG', 'accDL');
+save(OUTFILE, 'accKSTest', 'accKGTest', 'accKLTest', 'accDSTest', 'accDGTest', 'accDLTest', ...
+     'accKSTrain', 'accKGTrain', 'accKLTrain', 'accDSTrain', 'accDGTrain', 'accDLTrain');
