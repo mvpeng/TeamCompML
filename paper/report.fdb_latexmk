@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex report"] 1418175615 "report.aux" "report.bbl" "report" 1418176294
+["bibtex report"] 1418297249 "report.aux" "report.bbl" "report" 1418297896
   "/usr/local/texlive/2014/texmf-dist/bibtex/bib/IEEEtran/IEEEabrv.bib" 1222816716 17781 22a7187dd8f9c9fdd01e2bc45cbcedf0 ""
   "/usr/local/texlive/2014/texmf-dist/bibtex/bst/IEEEtran/IEEEtran.bst" 1222816716 59506 016987d9be15acf51cdd7252d40ecec2 ""
-  "report.aux" 1418176230 343 922aeeae0aa868f9d4e7faf29268bd90 ""
+  "report.aux" 1418297895 2873 c016cf1770ad0251fd803b938e14eb7f ""
   "report.bcf" 0 -1 0 ""
-  "report.bib" 1401868656 1124 cfe67aa2fd18d6100283f3b33bbdd551 ""
+  "report.bib" 1418286315 2850 3c6af53b30c99f979c6acd0607a78ce5 ""
   (generated)
-  "report.bbl"
   "report.blg"
-["pdflatex"] 1418176229 "report.tex" "report.pdf" "report" 1418176294
+  "report.bbl"
+["pdflatex"] 1418297894 "report.tex" "report.pdf" "report" 1418297896
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel-english/english.ldf" 1367878877 6963 2e0cb3d93aa64508bdb0db58ae900d97 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def" 1411763270 49725 b40154b767b0073ee42b35911042b793 ""
@@ -29,6 +29,7 @@
   "/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty" 1362954379 4082 502152465aedb8f6a3c4b0b7c0fa8ae5 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty" 1362954379 2637 846ebe982d3549c7ede7ce135456f54a ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/blindtext/blindtext.sty" 1325892463 47295 de48b7f8ebf4b54709a2f6b2c7106dd5 ""
+  "/usr/local/texlive/2014/texmf-dist/tex/latex/booktabs/booktabs.sty" 1211777752 6375 989ecfb545a13610facc71ae7e40ced1 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/epsfig.sty" 1156702488 3106 a896e5fe135d4485f72ce6c9d8459d2e ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty" 1254151804 14183 42a8fc761b806986eef292369afc2988 ""
   "/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphicx.sty" 1399675188 7911 bf0a64f89bfb668c239ddf6324bf4afb ""
@@ -48,10 +49,11 @@
   "/usr/local/texlive/texmf-local/tex/latex/mtpro2/mtpro2.sty" 1409790747 69791 dfab89806a6883e9eee5d284aa6b43f0 ""
   "defs.tex" 1401884814 1154 dafa5e4d8b51de501000e2167fbb7185 ""
   "ieeeconf.cls" 1407863118 202166 72fb7520d2463fbe11773e8fc42848df ""
-  "report.aux" 1418176230 343 922aeeae0aa868f9d4e7faf29268bd90 ""
-  "report.bbl" 1418175616 877 93a92f6d5e48d8cfa1fcea67675bd366 "bibtex report"
-  "report.tex" 1418176293 1584 0671c2ccf654606e20a37e4026aac1b9 ""
+  "report.aux" 1418297895 2873 c016cf1770ad0251fd803b938e14eb7f ""
+  "report.bbl" 1418297250 2626 ef848364576d549a3aef466a974f8512 "bibtex report"
+  "report.tex" 1418297893 10238 f3bb6426d43204d87bed25779bd58c45 ""
+  "viz-cluster.pdf" 1417988532 29294 bb2bdd09cc0d7b08a50bb56a74234257 ""
   (generated)
-  "report.pdf"
   "report.log"
   "report.aux"
+  "report.pdf"

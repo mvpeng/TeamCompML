@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  9 DEC 2014 17:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  11 DEC 2014 03:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -101,8 +101,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \c@biography=\count90
 \@IEEEtranrubishbin=\box26
 )
-** ATTENTION: Overriding command lockouts (line 7).
-** ATTENTION: Overriding IEEE standard margins (line 9).
+** ATTENTION: Overriding command lockouts (line 3).
+** ATTENTION: Overriding IEEE standard margins (line 4).
 (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -248,13 +248,33 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+(/usr/local/texlive/2014/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen126
+\lightrulewidth=\dimen127
+\cmidrulewidth=\dimen128
+\belowrulesep=\dimen129
+\belowbottomsep=\dimen130
+\aboverulesep=\dimen131
+\abovetopsep=\dimen132
+\cmidrulesep=\dimen133
+\cmidrulekern=\dimen134
+\defaultaddspace=\dimen135
+\@cmidla=\count104
+\@cmidlb=\count105
+\@aboverulesep=\dimen136
+\@belowrulesep=\dimen137
+\@thisruleclass=\count106
+\@lastruleclass=\count107
+\@thisrulewidth=\dimen138
+)
 (/usr/local/texlive/texmf-local/tex/latex/mtpro2/mtpro2.sty
 Package: mtpro2 2009/4/27 v2.3 MathTimePro II - added arc accents MathTimePro I
 I - fixed rbrace problem with straightbraces and morphedbraces options MathTime
 Pro II - fix bug with z = \delimiter "026E30F widetilde{\delimiter "026E30F sum
 _{x }}MathTimePro II v2 font support (PCTeX/WaS)MathTimePro II v2.1a Allowed al
 ternate form of I in Math Script Fonts (MS)
-\pointcount@=\count104
+\pointcount@=\count108
 \prePbox@=\box29
 \Pbox@=\box30
 \LRbox@=\box31
@@ -264,17 +284,17 @@ ternate form of I in Math Script Fonts (MS)
 \ARCbox@=\box35
 \preSbox@=\box36
 \Sbox@=\box37
-\SQcount@=\count105
+\SQcount@=\count109
 \SQRTbox@=\box38
-\UPROOT@=\count106
-\LEFTROOT@=\count107
-\limtype@=\count108
-\xlfont@=\count109
-\xlposition@=\count110
-\xlposition@ii=\count111
-\optype@=\count112
-\x@count=\count113
-\maxXLscripts@=\dimen126
+\UPROOT@=\count110
+\LEFTROOT@=\count111
+\limtype@=\count112
+\xlfont@=\count113
+\xlposition@=\count114
+\xlposition@ii=\count115
+\optype@=\count116
+\x@count=\count117
+\maxXLscripts@=\dimen139
 )
 (/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2014/09/25 3.9l The Babel package
@@ -284,8 +304,8 @@ Language: english 2012/08/20 v3.3p English support from the babel system
 
 (/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2014/09/25 3.9l Babel common definitions
-\babel@savecnt=\count114
-\U@D=\dimen127
+\babel@savecnt=\count118
+\U@D=\dimen140
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
@@ -297,24 +317,24 @@ Package: blindtext 2012/01/06 V2.0 blindtext-Package
 (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count115
-\c@Blindtext=\count116
-\c@blind@countparstart=\count117
-\blind@countxx=\count118
-\blindtext@numBlindtext=\count119
-\blind@countyy=\count120
-\c@blindlist=\count121
-\c@blindlistlevel=\count122
-\c@blindlist@level=\count123
-\blind@listitem=\count124
-\c@blind@listcount=\count125
-\c@blind@levelcount=\count126
-\blind@mathformula=\count127
-\blind@Mathformula=\count128
-\c@blind@randomcount=\count129
-\c@blind@randommax=\count130
-\c@blind@pangramcount=\count131
-\c@blind@pangrammax=\count132
+\c@blindtext=\count119
+\c@Blindtext=\count120
+\c@blind@countparstart=\count121
+\blind@countxx=\count122
+\blindtext@numBlindtext=\count123
+\blind@countyy=\count124
+\c@blindlist=\count125
+\c@blindlistlevel=\count126
+\c@blindlist@level=\count127
+\blind@listitem=\count128
+\c@blind@listcount=\count129
+\c@blind@levelcount=\count130
+\blind@mathformula=\count131
+\blind@Mathformula=\count132
+\c@blind@randomcount=\count133
+\c@blind@randommax=\count134
+\c@blind@pangramcount=\count135
+\c@blind@pangrammax=\count136
 ) (./defs.tex)
 (./report.aux)
 \openout1 = `report.aux'.
@@ -322,16 +342,16 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 
 (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count133
-\scratchdimen=\dimen128
+\scratchcounter=\count137
+\scratchdimen=\dimen141
 \scratchbox=\box39
-\nofMPsegments=\count134
-\nofMParguments=\count135
+\nofMPsegments=\count138
+\nofMParguments=\count139
 \everyMPshowfont=\toks21
-\MPscratchCnt=\count136
-\MPscratchDim=\dimen129
-\MPnumerator=\count137
-\makeMPintoPDFobject=\count138
+\MPscratchCnt=\count140
+\MPscratchDim=\dimen142
+\MPnumerator=\count141
+\makeMPintoPDFobject=\count142
 \everyMPtoPDFconversion=\toks22
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -383,20 +403,21 @@ e
 ))
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-) (./report.bbl
+) [1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
-! LaTeX Error: Something's wrong--perhaps a missing \item.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.24 \end{thebibliography}
-                          
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+]
+<viz-cluster.pdf, id=14, 614.295pt x 794.97pt>
+File: viz-cluster.pdf Graphic file (type pdf)
+ <use viz-cluster.pdf>
+Package pdftex.def Info: viz-cluster.pdf used on input line 110.
+(pdftex.def)             Requested size: 242.82503pt x 171.4969pt.
 
-)
+Overfull \hbox (26.14388pt too wide) in paragraph at lines 160--170
+ [][] 
+ []
+
+(./report.bbl)
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -408,34 +429,30 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[1{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-
-
-]
-(./report.aux) ) 
+[2 <./viz-cluster.pdf>] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 4076 strings out of 493109
- 56221 string characters out of 6135004
- 136652 words of memory out of 5000000
- 7470 multiletter control sequences out of 15000+600000
- 133718 words of font info for 131 fonts, out of 8000000 for 9000
+ 4158 strings out of 493109
+ 57265 string characters out of 6135004
+ 143473 words of memory out of 5000000
+ 7543 multiletter control sequences out of 15000+600000
+ 138821 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,9n,26p,281b,285s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc
-}</usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2exa.pfb></usr/loca
-l/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mif.pfb></usr/local/texlive/t
-exmf-local/fonts/type1/pctex/mtpro2/mt2mis.pfb></usr/local/texlive/texmf-local/
-fonts/type1/pctex/mtpro2/mt2mit.pfb></usr/local/texlive/texmf-local/fonts/type1
-/pctex/mtpro2/mt2sys.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpr
-o2/mt2syt.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8
-a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/t
-exlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (1 page, 93646 bytes).
+ 38i,9n,26p,962b,287s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2014/texmf-dist/fon
+ts/enc/dvips/base/8r.enc}</usr/local/texlive/texmf-local/fonts/type1/pctex/mtpr
+o2/mt2exa.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mif.p
+fb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mis.pfb></usr/lo
+cal/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mit.pfb></usr/local/texlive
+/texmf-local/fonts/type1/pctex/mtpro2/mt2syt.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/
+urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times
+/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri8a.p
+fb>
+Output written on report.pdf (2 pages, 140498 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
- 35 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12 words of extra memory for PDF output out of 10000 (max. 10000000)
 
