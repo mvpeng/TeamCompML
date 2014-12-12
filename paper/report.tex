@@ -6,6 +6,7 @@
 
 \usepackage{graphics,epsfig,mathptmx,times,amsmath,amssymb,graphicx,booktabs}
 \usepackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+\usepackage[ruled,vlined]{algorithm2e}
 \usepackage[english]{babel}
 \usepackage{blindtext}
 
@@ -78,15 +79,100 @@ For our clustering algorithms, the features were 21 normalized player statistics
 
 \subsubsection{k-means}
 
+Given a set of observations, k-means clustering aims to partition them into k sets $\mathcal{S} = \left\{ S_{1},\ldots,S_{k} \right\}$ so as to minimize the within-cluster sum of squares; i.e., find the minimizer $\mathcal{S}^{\star}$ of the distortion function:
+\begin{align}
+  \sum_{i=1}^{k}\sum_{x \in S_{i}}\left\| x - \mu_{i} \right\|_{2}^{2},
+  \label{eqn:k-means}
+\end{align}
+where $x$ is an observation and $\mu_{i}$ is the $i^{th}$ cluster centroid.
 
+In general, this problem is computationally difficult (NP-hard). For our clustering, we employ Lloyd's algorithm, which is a heuristic that consists of randomly choosing observations as cluster centroids and iteratively assigning observations to their closest centroids and updating the centroids with the mean of their respective clusters \cite{Ng:14}. 
+
+To select the number of clusters $k$, we run 10-fold cross validation over $k$ to find a local optimizer. The scoring function for the cross validation is simply the average distortion given by \eqref{eqn:k-means} over the held-out sets. 
 
 \subsubsection{DP-means}
 
+DP-means is a nonparametric expectation-maximization (EM) algorithm derived using a Dirichlet process (DP) mixture of Gaussians model. In other words, the user does not choose the number of clusters beforehand. The technique being the topic of a series of papers, we will only provide a brief description of the algorithm. The reader is referred to \cite{TKJ:13,KJ:12} for a thorough review of DP-means. 
 
+The derivation of DP-means is inspired by the connection between k-means EM with a finite mixture of Gaussians model. Namely, the k-means algorithm may be viewed as a limit of the EM algorithm if all of the covariance matrices corresponding to the clusters in a Gaussian mixture model are equal to $\sigma I$. As $\sigma \rightarrow 0$, the negative log-likelihood of the mixture of Gaussians model approaches the k-means clustering objective \eqref{eqn:k-means}. Correspondingly, the EM steps approach the k-means steps in Lloyd's algorithm. 
+
+In the case of DP-means, \cite{KJ:12} shows how to perform a similar limiting argument. Specifically, if the generative model for the EM algorithm was a DP mixture of Gaussians model with $\sigma I$, letting $\sigma \rightarrow 0$ yields the objective function
+\begin{align}
+  \sum_{i = 1}^{k}\sum_{x \in S_{i}} \left\| x - \mu_{i} \right\|_{2}^{2} + \left(k - 1\right)\lambda^{2},
+  \label{eqn:dp-means}
+\end{align}
+where $\mathcal{S} = \left\{ S_{1},\ldots,S_{k} \right\}$ is the set of clusters, $x$ is an observation, and $\mu_{i}$ is the $i^{th}$ cluster centroid. Note that, unlike in k-means, $k$ is now a variable to be optimized over.
+
+This leads to an algorithm with clustering assignments similar to the classical k-means algorithm and the same monotonic local convergence guarantees. (See Algorithm~\ref{alg:dp-means}.) The difference is that a new cluster is formed whenever an observation is sufficiently far away from all existing cluster centroids, with some user-defined threshold distance $\lambda$. Intuitively, $\lambda$ is a penalty on the number of clusters, on top of the original k-means distortion function. 
+
+\begin{algorithm}[!htbp]
+  \caption{DP-means}
+
+  \DontPrintSemicolon
+
+  \SetKwInOut{Input}{input}
+  \SetKwInOut{Output}{output}
+  
+  \Input{$\mathcal{X}$: input data, $\lambda$: threshold distance}
+  \Output{Clustering $S_{1},\ldots,S_{k}$, number of clusters $k$}
+  
+  \smallskip
+
+  $k \leftarrow 1$ \\
+  $S_{1} \leftarrow$ random observation $\left\{x^{\text{rand}}\in\mathcal{X}\right\}$ \\
+  $\mu_{1} \leftarrow x^{\text{rand}}$
+
+  \Repeat{
+    % termination condition
+    $S_{1},\ldots,S_{k}$ converge
+  }{
+    % loop
+    $X^{\text{perm}} \leftarrow$ random ordered permutation of $\mathcal{X}$ \\
+    // cluster assignments \\
+    \For{
+      % iteration condition
+      $x \in X^{\text{perm}}$ in order
+    }{
+      % loop
+      $c \leftarrow \argmin_{i \in \left\{1,\ldots,k\right\}} \left\| x - \mu_{i} \right\|_{2}^{2}$ \\
+      \If{
+        % if condition
+        $\left\| x - \mu_{c} \right\|_{2}^{2} > \lambda^{2}$
+      }{
+        % operation
+        $k \leftarrow k + 1$ \\ 
+        $\mu_{k} \leftarrow x$
+      }
+      \Else{
+        % operation
+        $\mathcal{S}_{c} \leftarrow \mathcal{S}_{c} \cup \left\{ x \right\}$
+      }
+    }
+    // centroid updates \\
+    \For{
+      % iteration condition
+      $i = 1,\ldots,k$
+    }{
+      % loop
+      $\mu_{i} \leftarrow \frac{1}{\left|S_{i}\right|} \sum_{x \in S_{i}} x$
+    }
+  }
+
+  \label{alg:dp-means}
+\end{algorithm}
+
+We ran DP-means with 10-fold cross validation over a range of $\lambda$ values, setting our scoring function as the average of the objective values from \eqref{eqn:dp-means} over the held-out sets.
 
 \subsection{Results and interpretation}
 
 
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[trim=55pt 200pt 70pt 200pt, clip, width=0.48\textwidth]{km-conv.pdf}
+  \caption{The log distortion values show a local optimum at k = 12 over the range of 5 to 24 clusters (highlighted above as a magenta asterisk).}
+  \label{fig:kmeans-conv}
+\end{figure}
 
 \begin{table}[htbp!]
   \centering
@@ -95,7 +181,7 @@ For our clustering algorithms, the features were 21 normalized player statistics
     \toprule
     & cross validation & no. of clusters & cpu time \\ \midrule
     k-means & 10-fold & 12 & 154.1 s \\
-    DP-means & 10\% hold-out & 8 & 65.4 s \\
+    DP-means & 10-fold & 8 & 65.4 s \\
     \bottomrule
   \end{tabular}
   \label{tab:clus}
@@ -159,7 +245,7 @@ For our classification algorithms, the features are the two teams' player compos
   \caption{Outcome prediction summary results}
   \begin{tabular}{lcccccc}
     \toprule
-    & \multicolumn{3}{c}{k-means} & \multicolumn{3}{c}{DP-means (\%)} \\
+    & \multicolumn{3}{c}{k-means} & \multicolumn{3}{c}{DP-means} \\
     & train acc. & test acc. & cpu time & train acc. & test acc. & cpu time \\ \midrule
     LR & 72.25\% & 68.75\% & 7.4 s & 69.67\% & 67.11\% & 7.1 s \\
     GDA & 74.79\% & 70.14\% & 7.7 s & 70.88\% & 68.39\% & 7.1 s \\
