@@ -58,6 +58,13 @@ B.~Kulis and M.~I. Jordan, ``Revisiting k-means: New algorithms via bayesian
 P.~Tassi, ``Riot's `{League of Legends}' reveals astonishing 27 million daily
   players, 67 million monthly,'' \emph{Forbes}, 2014.
 
+\bibitem{Suz:09}
+\BIBentryALTinterwordspacing
+S.~Ford, ``{League of Legends: Marc Merrill Q\&A},'' \emph{Warcry Network},
+  2009. [Online]. Available:
+  \url{http://www.warcry.com/articles/view/interviews/5686-League-of-Legends-Marc-Merrill-Q-A}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Rio:14}
 \BIBentryALTinterwordspacing
 {Riot Games, Inc.}, ``{Riot Games API},'' 2014. [Online]. Available:

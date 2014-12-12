@@ -61,7 +61,7 @@ We begin with a description of the MMORPG used for our numerical experiments and
 
 \subsection{League of Legends}
 
-For this project we consider a popular MMORPG---the League of Legends (LoL). LoL is a multiplayer online battle arena video game developed and published by Riot Games with 27 million daily players \cite{Tas:14}. In this MMORPG, a standard game consists of two opposing teams of five players. Each player assumes the role of one of over 120 different characters battling each other to destroy the opposing team's ``towers''---structures that fall after suffering enough attacks from characters. A game is won when all of either team's towers are destroyed. 
+For this project we consider a popular MMORPG---the League of Legends (LoL). LoL is a multiplayer online battle arena video game developed and published by Riot Games with 27 million daily players \cite{Tas:14}. Furthermore, LoL is a representative MMORPG of its genre, with many similar counterparts such as World of Warcraft's Dota 2 \cite{Suz:09}---giving us a measure of generalizability to other games in its genre. In this MMORPG, a standard game consists of two opposing teams of five players. Each player assumes the role of one of over 120 different characters battling each other to destroy the opposing team's ``towers''---structures that fall after suffering enough attacks from characters. A game is won when all of either team's towers are destroyed. 
 
 \subsection{Data set acquisition}
 
@@ -167,7 +167,7 @@ We ran DP-means with 10-fold cross validation over a range of $\lambda$ values, 
 
 \subsection{Numerical results}
 
-Due to the random initializations, we ran 20 trials for each clustering algorithm in order to obtain the best locally optimal centroids. These optima correspond to 12 and 8 clusters for k-means and DP-means, respectively. All code were implemented in MATLAB and computations executed on a 2.7 GHz Intel Core i7 with 8 GB RAM. Figure~\ref{fig:kmeans-conv} shows an example of the log of distortion values attained over the range of $k$ values for the k-means algorithm ran with 10-fold cross validation. Table~\ref{tab:clus} summarizes the results for the k-means and dp-means algorithms. 
+Due to the random initializations, we ran 20 trials for each clustering algorithm in order to obtain the best locally optimal centroids. These optima correspond to 12 and 8 clusters for k-means and DP-means, respectively. All code were implemented in MATLAB and computations executed on a 2.7 GHz Intel Core i7 with 8 GB RAM. Figure~\ref{fig:kmeans-conv} shows an example of the log of distortion values attained over the range of $k$ values for the k-means algorithm ran with 10-fold cross validation. Table~\ref{tab:clus} summarizes the results for the clustering algorithms. The recorded computation times were averaged over the 20 trials, and do not include preprocessing and transforming data into features, etc.
 
 \begin{figure}[htbp!]
   \centering
@@ -227,6 +227,8 @@ Surprisingly, our consultations with expert, highly-ranked (top 0.2\% worldwide)
 
 \end{itemize}
 
+Interestingly, we notice from expert analysis that there appears to be a hierarchy of clusters. For instance, clusters 6 and 10 fall under the broader ``magic attacker'' category. This suggests that we might consider other clustering models than k-means or DP-means, as these methods assign each observation to only one cluster. We address this further in Section~V.
+
 \subsection{Cluster visualization with PCA}
 
 Fig.~\ref{fig:viz} shows the result of applying principal component analysis (PCA) to reduce our feature dimension and visualize it in three dimensions. Notice that the data is clearly clustered into 8 distinct groups, suggesting that in higher dimensions there are probably more clusters. Overlaying our 12-groups clustering from the k-means technique in color, we observe that they are consistent with the PCA results: Almost all points in any k-means cluster are in the same PCA cluster. 
@@ -240,7 +242,7 @@ Fig.~\ref{fig:viz} shows the result of applying principal component analysis (PC
 
 \section{Game Outcome Prediction}
 
-
+We illustrate the accuracy of game outcome predictors that use team composition features based on our gameplay style clusters learned in the previous section. We present our feature selection, the classification models used to learn our predictors, and the accuracies for our predictors. 
 
 \subsection{Feature selection}
 
@@ -258,10 +260,6 @@ For our classification algorithms, the features are the two teams' player compos
   \right).
 \]
 
-\subsection{Baseline evaluation criteria}
-
-
-
 \subsection{Classification models}
 
 \subsubsection{Logistic regression}
@@ -276,9 +274,15 @@ For our classification algorithms, the features are the two teams' player compos
 
 
 
+\subsection{Evaluation criteria}
+
+To evaluate the usefulness of game outcome predictor models with features based on our learned behavior clusters, we compare them against a baseline predictor with features based on the game developers' official gameplay classes. As introduced in Section~III, the game developers have grouped the in-game characters into six broad categories, such as assassin or support, which supposedly reflects the character's gameplay style. We learn a logistic regression model with features constructed using these categories and use the 10\% hold-out method for cross validation. 
+
 \subsection{Results and discussion}
 
+To ensure fairness of results, we ran 20 trials for each model to determine the predictor accuracies, which are based on different randomized train and test sets. As with our clustering algorithms, all code were implemented in MATLAB, the computations were executed on a 2.7 GHz Intel Core i7 with 8 GB RAM, and the computation times were averaged over the 20 random trials. Again, these times do not include preprocessing and transforming data into features, etc.
 
+As we observe in Table~\ref{tab:pred}, the best predictor learned using our behavior clusters-based features did significantly better (16\% better) than the baseline algorithm on the test sets. Other than illustrating the relatively high accuracy of our team composition-based outcome prediction approach, this result also implies that our behavior clusters learned had more descriptive power than the official game developers' version. This concurs with what we have shown from our clustering models: The official gameplay style categories that were used for the baseline algorithm do not necessarily correspond to the behaviors of actual players in games. 
 
 \begin{table}[htbp!]
   \centering
@@ -297,10 +301,12 @@ For our classification algorithms, the features are the two teams' player compos
 
 \section{Conclusion and Extensions}
 
+In this brief, we have presented an algorithmic framework for outcome prediction: By learning in-game player behavior categories through clustering and using them in features for game outcome predictors based on classification models, we are able to determine wins and losses with over 70\% accuracy for our target game. This approach could be used to evaluate how team compositions can affect performance in fields other than video games (e.g., work environments).
 
+Future work will include adding time-dependent player statistics features. Unlike the overall game statistics we used, these timed statistics might give an additional layer of descriptive power, allowing the model to differentiate between clusters based on how players behave early and later in the game. This might lead to a better features for a more accurate team composition-based win/loss predictor. As another extension, we could also consider different clustering models, such as one that captures the ostensibly hierarchical clustering seen in the expert analysis of the k-means results. For instance, the BP-means model described in \cite{TKJ:13} is designed to capture such hierarchical clustering relationships.
 
 \section*{Acknowledgments}
-The authors thank Prof. Andrew Ng, the course staff, and the LoL players who helped with our behavior analysis.
+The authors thank Prof. Andrew Ng, the course staff, and the LoL players who helped with our cluster analysis.
 
 \bibliography{IEEEabrv,report}
 
