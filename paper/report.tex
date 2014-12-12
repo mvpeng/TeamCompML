@@ -75,7 +75,7 @@ The target game's developers have grouped the 120 different in-game characters i
 
 For our clustering algorithms, the features were 21 normalized player statistics, such as average damage dealt and money earned. The statistics were normalized over their range of values, preventing clusters from being formed due to order of magnitude differences between statistics. For instance, damage dealt values are often 7 orders of magnitude greater than kill streaks, which means small variations in damage dealt are erroneously considered as much more important than kill streaks if taken directly as feature values. 
 
-\subsection{Clustering algorithms}
+\subsection{Clustering models}
 
 \subsubsection{k-means}
 
@@ -177,11 +177,11 @@ We ran DP-means with 10-fold cross validation over a range of $\lambda$ values, 
 \begin{table}[htbp!]
   \centering
   \caption{Play style clustering summary results}
-  \begin{tabular}{lcccc}
+  \begin{tabular}{lccccc}
     \toprule
-    & cross validation & no. of clusters & cpu time \\ \midrule
-    k-means & 10-fold & 12 & 154.1 s \\
-    DP-means & 10-fold & 8 & 65.4 s \\
+    & cross val. & param. range & clusters & cpu time \\ \midrule
+    k-means & 10-fold & $k = 5, \ldots, 24$ & 12 & 154.1 s \\
+    DP-means & 10-fold & $\lambda = 2.5,2.6,\ldots,4.4$ & 8 & 65.4 s \\
     \bottomrule
   \end{tabular}
   \label{tab:clus}
@@ -222,7 +222,7 @@ For our classification algorithms, the features are the two teams' player compos
 
 
 
-\subsection{Classification algorithms}
+\subsection{Classification models}
 
 \subsubsection{Logistic regression}
 

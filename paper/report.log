@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  11 DEC 2014 17:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  11 DEC 2014 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -461,8 +461,12 @@ File: km-conv.pdf Graphic file (type pdf)
  <use km-conv.pdf>
 Package pdftex.def Info: km-conv.pdf used on input line 172.
 (pdftex.def)             Requested size: 242.82503pt x 196.01399pt.
- [2]
-<viz-cluster.pdf, id=23, 614.295pt x 794.97pt>
+
+Overfull \hbox (4.41739pt too wide) in paragraph at lines 180--188
+ [][] 
+ []
+
+[2] <viz-cluster.pdf, id=23, 614.295pt x 794.97pt>
 File: viz-cluster.pdf Graphic file (type pdf)
  <use viz-cluster.pdf>
 Package pdftex.def Info: viz-cluster.pdf used on input line 196.
@@ -488,7 +492,7 @@ Before submitting the final camera ready copy, remember to:
 Here is how much of TeX's memory you used:
  5550 strings out of 493109
  76648 string characters out of 6135004
- 187732 words of memory out of 5000000
+ 188732 words of memory out of 5000000
  8920 multiletter control sequences out of 15000+600000
  141546 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -506,7 +510,7 @@ t/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/ty
 pe1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/t
 imes/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmri
 8a.pfb>
-Output written on report.pdf (3 pages, 167617 bytes).
+Output written on report.pdf (3 pages, 168274 bytes).
 PDF statistics:
  79 PDF objects out of 1000 (max. 8388607)
  54 compressed objects within 1 object stream
