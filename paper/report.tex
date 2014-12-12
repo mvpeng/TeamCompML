@@ -5,7 +5,7 @@
 \bibliographystyle{IEEEtran}
 
 \usepackage{graphics,epsfig,mathptmx,times,amsmath,amssymb,graphicx,booktabs}
-\usepackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+%\usepackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage[english]{babel}
 \usepackage{blindtext}
@@ -262,17 +262,46 @@ For our classification algorithms, the features are the two teams' player compos
 
 \subsection{Classification models}
 
-\subsubsection{Logistic regression}
+\subsubsection{Logistic regression} We assume our data fits a Bernoulli distribution and choose a hypothesis function of the form:  $h_{\theta}\left(x\right) = \frac{1}{1+\exp\left(-\theta^Tx\right)}$.  Then we find $\theta$ that maximizes the log likelihood function $\ell\left(\theta\right)$:
 
+\begin{align}
+\sum_{i = 1}^{m}  y^{i}\log h\left(x^{i}\right) + \left(1-y^{i}\right)\log\left(1-h\left(x^{i}\right)\right)
+\label{eqn:logistic}
+\end{align}
 
+With this maximized $\theta$ we are then able to use the logistic function to classify our test set.
 
 \subsubsection{Gaussian discriminant analysis}
+We assume that $p\left(x|y\right)$ follows a multivariate normal distribution. The probability distributions are then given as:
+
+\begin{eqnarray*}
+p\left(y\right) &=& \phi^{y}\left(1-\phi\right)^{1-y}  
+
+p\left(x|y=0\right) &=& \frac{1}{\left(2\pi \right)^{n/2} |\Sigma|^{1/2} } \exp{\left(-\frac{1}{2}\left(x-\mu_{0}\right)^{T}\Sigma^{-1}\left(x-\mu_{0}\right)\right) } 
+
+p\left(x|y=1\right) &=& \frac{1}{\left(2\pi \right)^{n/2} |\Sigma|^{1/2} } \exp{\left(-\frac{1}{2}\left(x-\mu_{1}\right)^{T}\Sigma^{-1}\left(x-\mu_{1}\right)\right) } &
 
 
+\end{eqnarray}
 
-\subsubsection{Support vector machine}
+We then we maximize the log likelihood function $\ell$ with respect to parameters $\phi$, $\mu_{0}$, $\mu_{1}$, and $\Sigma$, where $\ell$ is given by:
+\[
+\log\prod\limits_{i=1}^{m} p\left(x^{i}|y^{i};\mu_{0},\mu_{1},\Sigma\right) p\left(y^{i};\phi\right)
+\]
 
+The decision boundary for classifying the data occurs at $p\left(y=1|x\right)=0.5$. 
 
+\subsubsection{Support vector machine} Assuming that our data is separable by soft-margins in a high dimensional space, we pose the standard primal optimization problem for finding optimal margin classifiers. Then we reformulate it as the dual problem:
+\[\max_{\alpha}  W\left(\alpha\right) & = & \sum\limits_{i=1}^{m}\alpha_{i} - \frac{1}{2}\sum_{i,j=1}^{m}y^{i} y^{j} \alpha_{i} \alpha_{j} \left\langle x^{i},x^{j}\right\rangle\]
+
+\[
+s.t. & \alpha_{i}\geq 0,  i=1,\ldots,m  \\
+\]
+\[
+\sum\limits_{i=1}^{m}\alpha_{i}y^{i} & = & 0 
+\]
+
+The solved $\alpha$ values are then used to form our classifier. 
 
 \subsection{Evaluation criteria}
 
