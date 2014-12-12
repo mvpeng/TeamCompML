@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex report"] 1418352162 "report.aux" "report.bbl" "report" 1418352808
+["bibtex report"] 1418385811 "report.aux" "report.bbl" "report" 1418385814
   "/usr/local/texlive/2014/texmf-dist/bibtex/bib/IEEEtran/IEEEabrv.bib" 1222816716 17781 22a7187dd8f9c9fdd01e2bc45cbcedf0 ""
   "/usr/local/texlive/2014/texmf-dist/bibtex/bst/IEEEtran/IEEEtran.bst" 1222816716 59506 016987d9be15acf51cdd7252d40ecec2 ""
-  "report.aux" 1418352164 3400 b63d1785aeb4ce8171b884129c819376 ""
+  "report.aux" 1418385813 3481 609cfd000f05af86f247626a0849c893 ""
   "report.bcf" 0 -1 0 ""
   "report.bib" 1418338812 3649 99e66f371233996f9980b72d6f430194 ""
   (generated)
-  "report.bbl"
   "report.blg"
-["pdflatex"] 1418352163 "report.tex" "report.pdf" "report" 1418352808
+  "report.bbl"
+["pdflatex"] 1418385812 "report.tex" "report.pdf" "report" 1418385814
   "/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii" 1337017135 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel-english/english.ldf" 1367878877 6963 2e0cb3d93aa64508bdb0db58ae900d97 ""
   "/usr/local/texlive/2014/texmf-dist/tex/generic/babel/babel.def" 1411763270 49725 b40154b767b0073ee42b35911042b793 ""
@@ -53,11 +53,11 @@
   "defs.tex" 1401884814 1154 dafa5e4d8b51de501000e2167fbb7185 ""
   "ieeeconf.cls" 1407863118 202166 72fb7520d2463fbe11773e8fc42848df ""
   "km-conv.pdf" 1418337867 2422 b9d1b07a10078542e52a288fd49534f0 ""
-  "report.aux" 1418352164 3400 b63d1785aeb4ce8171b884129c819376 ""
-  "report.bbl" 1418352162 3133 303d2ee1c33edd299ece880131b6d535 "bibtex report"
-  "report.tex" 1418352157 15438 9079bd34df81e015f8330ed713208c96 ""
+  "report.aux" 1418385813 3481 609cfd000f05af86f247626a0849c893 ""
+  "report.bbl" 1418385812 3133 303d2ee1c33edd299ece880131b6d535 "bibtex report"
+  "report.tex" 1418385808 18747 8ed7af98d419d5c6e60c65e0fad85dcf ""
   "viz-cluster.pdf" 1417988532 29294 bb2bdd09cc0d7b08a50bb56a74234257 ""
   (generated)
-  "report.aux"
   "report.pdf"
   "report.log"
+  "report.aux"

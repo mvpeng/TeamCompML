@@ -92,11 +92,13 @@ To select the number of clusters $k$, we run 10-fold cross validation over $k$ t
 
 \subsubsection{DP-means}
 
-DP-means is a nonparametric expectation-maximization (EM) algorithm derived using a Dirichlet process (DP) mixture of Gaussians model. In other words, the user does not choose the number of clusters beforehand. The technique being the topic of a series of papers, we will only provide a brief description of the algorithm. The reader is referred to \cite{TKJ:13,KJ:12} for a thorough review of DP-means. 
+DP-means is a nonparametric expectation-maximization (EM) algorithm derived using a Dirichlet process (DP) mixture of Gaussians model, which  In other words, the user does not choose the number of clusters beforehand. The technique being the topic of a series of papers, we will only provide a brief description of the algorithm. The reader is referred to \cite{TKJ:13,KJ:12} for a thorough review of DP-means. 
+
+Recall that the standard mixture of Gaussians assumes that one chooses a cluster with probability $\pi_{c}$ and then generates an observation from the $k$ Gaussians corresponding to that chosen cluster. In contrast, the DP mixture of Gaussians is a Bayesian extension to this model that arises by first placing a Dirichlet prior $\text{Dir}(k,\pi_{0})$ on the $k$ mixing Gaussian coefficients (i.e., the probability of choosing a cluster) for some initial set of coefficients $\pi_{0}$ (e.g., uniform prior). As observations are made, the prior is updated and the mixture coefficients change to reflect these new knowledge.
 
 The derivation of DP-means is inspired by the connection between k-means EM with a finite mixture of Gaussians model. Namely, the k-means algorithm may be viewed as a limit of the EM algorithm if all of the covariance matrices corresponding to the clusters in a Gaussian mixture model are equal to $\sigma I$. As $\sigma \rightarrow 0$, the negative log-likelihood of the mixture of Gaussians model approaches the k-means clustering objective \eqref{eqn:k-means}. Correspondingly, the EM steps approach the k-means steps in Lloyd's algorithm. 
 
-In the case of DP-means, \cite{KJ:12} shows how to perform a similar limiting argument. Specifically, if the generative model for the EM algorithm was a DP mixture of Gaussians model with $\sigma I$, letting $\sigma \rightarrow 0$ yields the objective function
+In the case of DP-means, \cite{KJ:12} shows how to perform a similar limiting argument. Specifically, suppose that the generative model for the EM algorithm was a DP mixture of Gaussians model with covariances equal to $\sigma I$. Letting $\sigma \rightarrow 0$ for the DP mixture model yields the objective function
 \begin{align}
   \sum_{i = 1}^{k}\sum_{x \in S_{i}} \left\| x - \mu_{i} \right\|_{2}^{2} + \left(k - 1\right)\lambda^{2},
   \label{eqn:dp-means}
@@ -163,14 +165,14 @@ This leads to an algorithm with clustering assignments similar to the classical 
 
 We ran DP-means with 10-fold cross validation over a range of $\lambda$ values, setting our scoring function as the average of the objective values from \eqref{eqn:dp-means} over the held-out sets.
 
-\subsection{Results and interpretation}
+\subsection{Numerical results}
 
-
+Due to the random initializations, we ran 20 trials for each clustering algorithm in order to obtain the best locally optimal centroids. These optima correspond to 12 and 8 clusters for k-means and DP-means, respectively. All code were implemented in MATLAB and computations executed on a 2.7 GHz Intel Core i7 with 8 GB RAM. Figure~\ref{fig:kmeans-conv} shows an example of the log of distortion values attained over the range of $k$ values for the k-means algorithm ran with 10-fold cross validation. Table~\ref{tab:clus} summarizes the results for the k-means and dp-means algorithms. 
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[trim=55pt 200pt 70pt 200pt, clip, width=0.48\textwidth]{km-conv.pdf}
-  \caption{The log distortion values show a local optimum at k = 12 over the range of 5 to 24 clusters (highlighted above as a magenta asterisk).}
+  \caption{Best trial out of 20: The log distortion values show a local optimum at k = 12 over the range of 5 to 24 clusters (magenta asterisk).}
   \label{fig:kmeans-conv}
 \end{figure}
 
@@ -186,6 +188,44 @@ We ran DP-means with 10-fold cross validation over a range of $\lambda$ values, 
   \end{tabular}
   \label{tab:clus}
 \end{table}
+
+\subsection{Cluster interpretation}
+
+Surprisingly, our consultations with expert, highly-ranked (top 0.2\% worldwide) LoL players corroborated the correctness of the behavior clusters learned by our algorithms. By checking the centroid values corresponding to each feature and using information about the frequency of in-game characters used for each cluster, these expert players were able map each cluster to a specific gameplay type that they had experienced in-game. This suggests that our clustering were intuitively correct. The mappings determined for the 12-clusters k-means result are as follows. 
+
+\begin{itemize}
+
+  \item \textbf{Ranged physical attacker} Clusters 1, 7, and 9
+  \begin{itemize}
+    \item Players who maintain distance from fights while dealing high damage with long-range attacks
+    \item Players in each cluster differ in risk attitudes, such as whether they attack deeper in enemy territory
+  \end{itemize}
+
+  \item \textbf{Ambusher} Clusters 3, 8, 11, and 12
+  \begin{itemize}
+    \item Players who move stealthily around the battlefield and engage in quick, close-ranged combat
+    \item Some players prefer a team oriented style, whereas others prefer a more ``lone wolf'' approach
+    \item Includes ``hybrid'' roles with other behavior clusters
+  \end{itemize}
+
+  \item \textbf{Team support} Cluster 5
+  \begin{itemize}
+    \item Players who typically assist ranged physical attackers (healing, cooperative attacks, etc.)
+  \end{itemize}
+
+  \item \textbf{Magic attacker} Clusters 6 and 10
+  \begin{itemize}
+    \item Players who rely on magic-based attacks; as opposed to physical damage in the above clusters
+    \item Differ in preference for close- or ranged-combat
+  \end{itemize}
+
+  \item \textbf{Miscellaneous} Clusters 2 and 4
+  \begin{itemize}
+    \item No clear style preference
+    \item Differs in skill: either a novice player or prefers an all-around gameplay style
+  \end{itemize}
+
+\end{itemize}
 
 \subsection{Cluster visualization with PCA}
 
@@ -260,7 +300,7 @@ For our classification algorithms, the features are the two teams' player compos
 
 
 \section*{Acknowledgments}
-The authors thank Prof. Andrew Ng and the course staff.
+The authors thank Prof. Andrew Ng, the course staff, and the LoL players who helped with our behavior analysis.
 
 \bibliography{IEEEabrv,report}
 
