@@ -83,8 +83,4 @@ T.~Broderick, B.~Kulis, and M.~I. Jordan, ``{MAD-Bayes: MAP-based asymptotic
   Conference on Machine Learning}, S.~Dasgupta and D.~McAllester, Eds.\hskip
   1em plus 0.5em minus 0.4em\relax Omnipress, Jun. 2013.
 
-\bibitem{SBS:99}
-B.~Sch{\"o}lkopf, C.~Burges, and A.~J. Smola, \emph{Advances in Kernel Methods:
-  Support Vector Learning}, 1999.
-
 \end{thebibliography}

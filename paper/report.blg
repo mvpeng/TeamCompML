@@ -9,51 +9,51 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: IEEEabrv.bib
 Database file #2: report.bib
+Warning--I didn't find a database entry for "SBS:99"
 -- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-Warning--missing publisher in SBS:99
 
 Done.
-You've used 12 entries,
+You've used 11 entries,
             4039 wiz_defined-function locations,
-            1288 strings with 16887 characters,
-and the built_in function-call counts, 6286 in all, are:
-= -- 487
-> -- 132
+            1285 strings with 16765 characters,
+and the built_in function-call counts, 5877 in all, are:
+= -- 461
+> -- 119
 < -- 21
-+ -- 63
-- -- 27
-* -- 295
-:= -- 1077
-add.period$ -- 26
-call.type$ -- 12
++ -- 57
+- -- 24
+* -- 277
+:= -- 1015
+add.period$ -- 25
+call.type$ -- 11
 change.case$ -- 17
 chr.to.int$ -- 48
-cite$ -- 13
-duplicate$ -- 503
-empty$ -- 585
-format.name$ -- 35
-if$ -- 1383
+cite$ -- 11
+duplicate$ -- 472
+empty$ -- 537
+format.name$ -- 31
+if$ -- 1289
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 96
-newline$ -- 65
-num.names$ -- 18
-pop$ -- 254
+int.to.str$ -- 11
+missing$ -- 89
+newline$ -- 62
+num.names$ -- 17
+pop$ -- 232
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 474
+skip$ -- 438
 stack$ -- 0
 substring$ -- 125
-swap$ -- 322
+swap$ -- 303
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 12
-warning$ -- 1
-while$ -- 24
-width$ -- 14
-write$ -- 132
+type$ -- 11
+warning$ -- 0
+while$ -- 23
+width$ -- 13
+write$ -- 125
 (There was 1 warning)

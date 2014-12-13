@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  12 DEC 2014 21:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.6)  12 DEC 2014 21:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -101,8 +101,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <24> not available
 \c@biography=\count90
 \@IEEEtranrubishbin=\box26
 )
-** ATTENTION: Overriding command lockouts (line 3).
-** ATTENTION: Overriding IEEE standard margins (line 4).
+** ATTENTION: Overriding command lockouts (line 4).
+** ATTENTION: Overriding IEEE standard margins (line 5).
 (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -459,24 +459,27 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 <km-conv.pdf, id=21, 614.295pt x 794.97pt>
 File: km-conv.pdf Graphic file (type pdf)
  <use km-conv.pdf>
-Package pdftex.def Info: km-conv.pdf used on input line 176.
+Package pdftex.def Info: km-conv.pdf used on input line 177.
 (pdftex.def)             Requested size: 242.82503pt x 196.01399pt.
 
 <viz-cluster.pdf, id=23, 614.295pt x 794.97pt>
 File: viz-cluster.pdf Graphic file (type pdf)
  <use viz-cluster.pdf>
-Package pdftex.def Info: viz-cluster.pdf used on input line 240.
+Package pdftex.def Info: viz-cluster.pdf used on input line 241.
 (pdftex.def)             Requested size: 242.82503pt x 171.4969pt.
  [3 <./km-conv.pdf> <./viz-cluster.pdf>]
-Underfull \hbox (badness 1655) in paragraph at lines 272--273
+Underfull \hbox (badness 1655) in paragraph at lines 273--274
  \OT1/ptm/m/it/10 1) Lo-gis-tic re-gres-sion: [][] \OT1/ptm/m/n/10 For this mod
 el, we use the
  []
 
 
-Overfull \hbox (4.80267pt too wide) in paragraph at lines 277--277
+Overfull \hbox (4.80267pt too wide) in paragraph at lines 278--278
 [] 
  []
+
+
+LaTeX Warning: Citation `SBS:99' on page 4 undefined on input line 300.
 
 [4] (./report.bbl
 Underfull \hbox (badness 3199) in paragraph at lines 63--67
@@ -495,28 +498,32 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the US letter (8.5in X 11in) paper size.
 
-[5] (./report.aux) ) 
+[5] (./report.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
  5552 strings out of 493109
  76664 string characters out of 6135004
- 188742 words of memory out of 5000000
+ 188737 words of memory out of 5000000
  8922 multiletter control sequences out of 15000+600000
  141546 words of font info for 140 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,16n,26p,980b,372s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r
-.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2exa.pfb></usr/l
-ocal/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2mif.pfb></usr/local/texliv
-e/texmf-local/fonts/type1/pctex/mtpro2/mt2mis.pfb></usr/local/texlive/texmf-loc
-al/fonts/type1/pctex/mtpro2/mt2mit.pfb></usr/local/texlive/texmf-local/fonts/ty
-pe1/pctex/mtpro2/mt2sys.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/m
-tpro2/mt2syt.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/courier/uc
-rr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/loca
-l/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/
-2014/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on report.pdf (5 pages, 182966 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/texmf-local/fonts/type1/pctex/mtpro2/mt2exa.pfb></usr/local/texlive/texmf
+-local/fonts/type1/pctex/mtpro2/mt2mif.pfb></usr/local/texlive/texmf-local/font
+s/type1/pctex/mtpro2/mt2mis.pfb></usr/local/texlive/texmf-local/fonts/type1/pct
+ex/mtpro2/mt2mit.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/m
+t2sys.pfb></usr/local/texlive/texmf-local/fonts/type1/pctex/mtpro2/mt2syt.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/loc
+al/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive
+/2014/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2014/tex
+mf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fo
+nts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (5 pages, 182715 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream

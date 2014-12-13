@@ -1,3 +1,4 @@
+  
 \documentclass[letterpaper,10 pt,conference]{ieeeconf}
 
 \IEEEoverridecommandlockouts
@@ -5,7 +6,7 @@
 \bibliographystyle{IEEEtran}
 
 \usepackage{graphics,epsfig,mathptmx,times,amsmath,amssymb,graphicx,booktabs}
-%\usepackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
+\usepackage[lite,subscriptcorrection,slantedGreek,nofontinfo]{mtpro2}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage[english]{babel}
 \usepackage{blindtext}
@@ -277,24 +278,8 @@ For this model, we use the Bernoulli family of distributions to model the condit
 \end{align}
 where $m$ is the sample set size. We used stochastic gradient ascent to efficiently find the optimizer $\theta^{\star}$. 
 
-\subsubsection{Logistic regression} We assume our data fits a Bernoulli distribution and choose a hypothesis function of the form:  $h_{\theta}\left(x\right) = \frac{1}{1+\exp\left(-\theta^Tx\right)}$.  Then we find $\theta$ that maximizes the log likelihood function $\ell\left(\theta\right)$:
-
-\begin{align}
-\sum_{i = 1}^{m}  y^{i}\log h\left(x^{i}\right) + \left(1-y^{i}\right)\log\left(1-h\left(x^{i}\right)\right)
-\label{eqn:logistic}
-\end{align}
-
-With this maximized $\theta$ we are then able to use the logistic function to classify our test set.
-
 \subsubsection{Gaussian discriminant analysis}
-We assume that $p\left(x|y\right)$ follows a multivariate normal distribution. The probability distributions are then given as:
 
-\begin{eqnarray*}
-p\left(y\right) &=& \phi^{y}\left(1-\phi\right)^{1-y}  
-
-p\left(x|y=0\right) &=& \frac{1}{\left(2\pi \right)^{n/2} |\Sigma|^{1/2} } \exp{\left(-\frac{1}{2}\left(x-\mu_{0}\right)^{T}\Sigma^{-1}\left(x-\mu_{0}\right)\right) } 
-
-<<<<<<< HEAD
 In this model, we assume that the input features $x$ are continuous-valued random variables and model $p\left(x \mid y\right)$ using a multivariate normal distribution. In other words, we use a generative learning model. In our case,
 \begin{align}
   y & \sim \text{Bernoulli}\left(\phi\right) \\
@@ -305,38 +290,14 @@ where $\mu_{0}$, $\mu_{1}$, and $\Sigma$ are the means and covariance of the Gau
 \begin{align}
   \ell\left(\phi,\mu_{0},\mu_{1},\Sigma\right) = \log\prod_{i=1}^{m}p\left( x^{(i)}, y^{(i)}; \phi,\mu_{0},\mu_{1},\Sigma \right).
 \end{align}
-=======
-p\left(x|y=1\right) &=& \frac{1}{\left(2\pi \right)^{n/2} |\Sigma|^{1/2} } \exp{\left(-\frac{1}{2}\left(x-\mu_{1}\right)^{T}\Sigma^{-1}\left(x-\mu_{1}\right)\right) } &
->>>>>>> ed197f28d4833984c26c1ecc56ae6fedb5696e6f
 
 The result of maximizing $\ell$ with respect to the model parameters is a set of exact analytic equations \cite{Ng:14}, which we compute directly. The derivation of these equations are simple, and we omit them for brevity. 
 
-\end{eqnarray}
+\subsubsection{Support vector machine}
 
-We then we maximize the log likelihood function $\ell$ with respect to parameters $\phi$, $\mu_{0}$, $\mu_{1}$, and $\Sigma$, where $\ell$ is given by:
-\[
-\log\prod\limits_{i=1}^{m} p\left(x^{i}|y^{i};\mu_{0},\mu_{1},\Sigma\right) p\left(y^{i};\phi\right)
-\]
-
-<<<<<<< HEAD
 Assuming that our data are separable with a large ``gap,'' a support vector machine model posits that the size of the geometric margin between some observation point and the decision boundary is proportional to ``confidence level'' that the observation is classified correctly. The result of this model is an optimization problem that seeks the maximum margin separating hyperplane for our samples. 
 
 For our problem, we use $\ell_{1}$ regularization since we are uncertain about whether our data is linearly separable (e.g., outliers, erroneous data). The resulting problem is solved using the sequential minimal optimization algorithm \cite{SBS:99}.
-=======
-The decision boundary for classifying the data occurs at $p\left(y=1|x\right)=0.5$. 
-
-\subsubsection{Support vector machine} Assuming that our data is separable by soft-margins in a high dimensional space, we pose the standard primal optimization problem for finding optimal margin classifiers. Then we reformulate it as the dual problem:
-\[\max_{\alpha}  W\left(\alpha\right) & = & \sum\limits_{i=1}^{m}\alpha_{i} - \frac{1}{2}\sum_{i,j=1}^{m}y^{i} y^{j} \alpha_{i} \alpha_{j} \left\langle x^{i},x^{j}\right\rangle\]
-
-\[
-s.t. & \alpha_{i}\geq 0,  i=1,\ldots,m  \\
-\]
-\[
-\sum\limits_{i=1}^{m}\alpha_{i}y^{i} & = & 0 
-\]
-
-The solved $\alpha$ values are then used to form our classifier. 
->>>>>>> ed197f28d4833984c26c1ecc56ae6fedb5696e6f
 
 \subsection{Evaluation criteria}
 
@@ -346,7 +307,7 @@ To evaluate the usefulness of game outcome predictor models with features based 
 
 To ensure fairness of results, we ran 20 trials for each model to determine the predictor accuracies, which are based on different randomized train and test sets. As with our clustering algorithms, all code were implemented in MATLAB, the computations were executed on a 2.7 GHz Intel Core i7 with 8 GB RAM, and the computation times were averaged over the 20 random trials. Again, these times do not include preprocessing and transforming data into features, etc.
 
-As we observe in Table~\ref{tab:pred}, the best predictor learned using our behavior clusters-based features uses an SVM model with features derived from our k-means clustering. This predictor did significantly better (16\% better) than the baseline algorithm on the test sets, and the other predictors were also competitive---each were only less accurate by a tiny percentage. 
+As we observe in Table~\ref{tab:pred}, the best predictor learned using our behavior clusters-based features uses an SVM model with features derived from our k-means clustering. This predictor did significantly better (16\% better) than the baseline algorithm on the test sets, and the other predictors were also competitive---all were only less accurate by a tiny percentage. 
 
 \begin{table}[htbp!]
   \centering
