@@ -10,6 +10,8 @@
 \usepackage[english]{babel}
 \usepackage{blindtext}
 
+\setlength\tabcolsep{4pt}
+
 \input defs.tex
 
 \title{\LARGE \bf
@@ -53,7 +55,7 @@ Online virtual worlds are an increasingly significant venue for human interactio
 
 Besides profit-making, an understanding of these social dynamics would provide insight to human interactions in the real world and the potential of virtual worlds for education, training, and scientific research \cite{Bai:12,Dic:05}. Numerous prior studies in social sciences and management have investigated how team compositions can affect team performance \cite{Spo:11,HA:08}. However, little is understood about player behavior and team performance and factors contributing to it in competitive MMORPGs. To address this, we develop a machine learning framework that uses game histories to learn player behavior clusters and predict the outcome of games given prior knowledge about the game and its players. 
 
-The contributions of this paper are twofold. First, we present several approaches that group player behaviors in online games. Second, we develop predictors that determine how likely it is that a team of players can emerge victorious given the said team's composition of players, all of whom may have different play styles. Specifically, we consider k-means and DP-means---an expectation maximization algorithm \cite{KJ:12}---for clustering play styles and logistic regression, Gaussian discriminant analysis, and support vector machines for determining win/loss outcomes. The rest of the paper is structured as follows. Section~II describes the target game of our numerical experiments and our data collection method. Sections~III and IV demonstrate several methods and their effectiveness for learning play style clusters and outcome predictors. Some concluding remarks are drawn and future works mentioned in Section~V.
+The contributions of this paper are twofold. First, we present several approaches that group player behaviors in online games. Second, we develop predictors that determine how likely it is that a team of players can emerge victorious given the said team's composition of players, all of whom may have different play styles. Specifically, we consider k-means and DP-means---an expectation maximization algorithm \cite{KJ:12}---for clustering play styles and logistic regression (LR), Gaussian discriminant analysis (GDA), and support vector machines (SVMs) for determining win/loss outcomes. The rest of the paper is structured as follows. Section~II describes the target game of our numerical experiments and our data collection method. Sections~III and IV demonstrate several methods and their effectiveness for learning play style clusters and outcome predictors. Some concluding remarks are drawn and future works mentioned in Section~V.
 
 \section{Target Game Description}
 
@@ -257,22 +259,44 @@ For our classification algorithms, the features are the two teams' player compos
       \end{array}
     \right],
     1
-  \right).
+  \right),
 \]
+where $x$ is the feature vector and $y$ is the sample binary label.
 
 \subsection{Classification models}
 
+We obtain the best win/loss outcome predictor, we consider different classification models. To determine the accuracy of our predictors learned using the various models, we held out 10\% of our total sample set (over 130,000 in total) for training, and used the held-out samples for testing. 
+
 \subsubsection{Logistic regression}
 
-
+For this model, we use the Bernoulli family of distributions to model the conditional distribution of winning or losing given the team composition features. That is, adhering to our notation introduced above, $y \mid x; \theta \sim \text{Bernoulli}\left(\phi\right)$, where $\theta$ is our model parameter and $\phi = h_{\theta}\left(x\right) = 1/\left(1 + \exp(-\theta^{T}x)\right)$ is our hypothesis, which is derived from formulating the Bernoulli distribution as an exponential family distribution. To learn our model, we find a parameter $\theta$ that maximizes the log-likelihood function
+\begin{align}
+  \ell\left(\theta\right) & = 
+  \log\prod_{i=1}^{m}p\left( y^{(i)} \mid x^{(i)}; \theta \right) \\ & =
+  \sum_{i=1}^{m}y^{(i)}\log h_{\theta}\left(x^{(i)}\right) + \left(1 - y^{(i)}\right)\log\left(1 - h_{\theta}\left(x^{(i)}\right)\right),
+\end{align}
+where $m$ is the sample set size. We used stochastic gradient ascent to efficiently find the optimizer $\theta^{\star}$. 
 
 \subsubsection{Gaussian discriminant analysis}
 
+In this model, we assume that the input features $x$ are continuous-valued random variables and model $p\left(x \mid y\right)$ using a multivariate normal distribution. In other words, we use a generative learning model. In our case,
+\begin{align}
+  y & \sim \text{Bernoulli}\left(\phi\right) \\
+  x\mid y = 0 & \sim \mathcal{N}\left(\mu_{0},\Sigma\right) \\
+  x\mid y = 1 & \sim \mathcal{N}\left(\mu_{1},\Sigma\right),
+\end{align}
+where $\mu_{0}$, $\mu_{1}$, and $\Sigma$ are the means and covariance of the Gaussian distributions. Here, we maximize the log-likelihood of the $m$-samples data
+\begin{align}
+  \ell\left(\phi,\mu_{0},\mu_{1},\Sigma\right) = \log\prod_{i=1}^{m}p\left( x^{(i)}, y^{(i)}; \phi,\mu_{0},\mu_{1},\Sigma \right).
+\end{align}
 
+The result of maximizing $\ell$ with respect to the model parameters is a set of exact analytic equations \cite{Ng:14}, which we compute directly. The derivation of these equations are simple, and we omit them for brevity. 
 
 \subsubsection{Support vector machine}
 
+Assuming that our data are separable with a large ``gap,'' a support vector machine model posits that the size of the geometric margin between some observation point and the decision boundary is proportional to ``confidence level'' that the observation is classified correctly. The result of this model is an optimization problem that seeks the maximum margin separating hyperplane for our samples. 
 
+For our problem, we use $\ell_{1}$ regularization since we are uncertain about whether our data is linearly separable (e.g., outliers, erroneous data). The resulting problem is solved using the sequential minimal optimization algorithm \cite{SBS:99}.
 
 \subsection{Evaluation criteria}
 
@@ -282,7 +306,7 @@ To evaluate the usefulness of game outcome predictor models with features based 
 
 To ensure fairness of results, we ran 20 trials for each model to determine the predictor accuracies, which are based on different randomized train and test sets. As with our clustering algorithms, all code were implemented in MATLAB, the computations were executed on a 2.7 GHz Intel Core i7 with 8 GB RAM, and the computation times were averaged over the 20 random trials. Again, these times do not include preprocessing and transforming data into features, etc.
 
-As we observe in Table~\ref{tab:pred}, the best predictor learned using our behavior clusters-based features did significantly better (16\% better) than the baseline algorithm on the test sets. Other than illustrating the relatively high accuracy of our team composition-based outcome prediction approach, this result also implies that our behavior clusters learned had more descriptive power than the official game developers' version. This concurs with what we have shown from our clustering models: The official gameplay style categories that were used for the baseline algorithm do not necessarily correspond to the behaviors of actual players in games. 
+As we observe in Table~\ref{tab:pred}, the best predictor learned using our behavior clusters-based features uses an SVM model with features derived from our k-means clustering. This predictor did significantly better (16\% better) than the baseline algorithm on the test sets, and the other predictors were also competitive---each were only less accurate by a tiny percentage. 
 
 \begin{table}[htbp!]
   \centering
@@ -299,14 +323,18 @@ As we observe in Table~\ref{tab:pred}, the best predictor learned using our beha
   \label{tab:pred}
 \end{table}
 
+Other than illustrating the relatively high accuracy of our team composition-based outcome prediction approach, this result also implies that our behavior clusters learned had more descriptive power than the official game developers' version. This indirectly concurs with what we have shown from our clustering models: The official gameplay style categories that were used for the baseline algorithm do not necessarily correspond to the behaviors of actual players in games. 
+
+Overall, our results validate our framework of first clustering players by their gameplay style and then using team composition features based on these learned styles to predict team performance. And since our target game is a representative title for games of the same type (i.e., team-based role-playing games), we expect this framework to also be effective and generalizable to other multiplayer games. 
+
 \section{Conclusion and Extensions}
 
-In this brief, we have presented an algorithmic framework for outcome prediction: By learning in-game player behavior categories through clustering and using them in features for game outcome predictors based on classification models, we are able to determine wins and losses with over 70\% accuracy for our target game. This approach could be used to evaluate how team compositions can affect performance in fields other than video games (e.g., work environments).
+In this brief, we have presented an algorithmic framework for outcome prediction: By learning in-game player behavior categories through clustering and using them in features for game outcome predictors based on classification models, we are able to determine wins and losses with over 70\% accuracy for our target game. This approach could be used to evaluate how team compositions can affect performance in games other than the one we have considered.
 
-Future work will include adding time-dependent player statistics features. Unlike the overall game statistics we used, these timed statistics might give an additional layer of descriptive power, allowing the model to differentiate between clusters based on how players behave early and later in the game. This might lead to a better features for a more accurate team composition-based win/loss predictor. As another extension, we could also consider different clustering models, such as one that captures the ostensibly hierarchical clustering seen in the expert analysis of the k-means results. For instance, the BP-means model described in \cite{TKJ:13} is designed to capture such hierarchical clustering relationships.
+Future work will include adding time-dependent player statistics features. Unlike the overall game statistics we used, these timed statistics might give an additional layer of descriptive power, allowing the model to differentiate between clusters based on how players behave early and later in the game. This might lead to a better features for a more accurate team composition-based win/loss predictor. As another extension, we could also consider different clustering models, such as one that captures the ostensibly hierarchical clustering seen in the expert analysis of the k-means results. For instance, the BP-means model described in \cite{TKJ:13} is designed to capture such hierarchical clustering relationships. 
 
 \section*{Acknowledgments}
-The authors thank Prof. Andrew Ng, the course staff, and the LoL players who helped with our cluster analysis.
+We thank Professor Andrew Ng and the course staff for motivating and giving feedback for our work. We are also grateful to the LoL expert players who helped with our cluster analysis.
 
 \bibliography{IEEEabrv,report}
 
