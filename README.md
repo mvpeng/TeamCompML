@@ -1,9 +1,10 @@
-TeamCompML
-==========
+# TeamCompML: League of Legends + Machine Learning
 
-League of Legends + Machine Learning
-=======
 Repository for CS 229 League of Legends + Machine Learning project. 
+
+## Paper
+
+See our paper [here](http://arxiv.org/abs/1503.02230).
 
 ## Title
 
